@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-// import online.example.attendance.student;
+
+
+import online.example.attendance.repostery.Std_Repo;
+import online.example.attendance.table.student;
 
 @SpringBootApplication
 public class AttendanceApplication implements CommandLineRunner {
@@ -20,10 +23,10 @@ public class AttendanceApplication implements CommandLineRunner {
 	@Override
     public void run(String... args) throws Exception
     {
-        student first = new student(1, 1,"10","kiran kasana","vinodi lal gurjar","prem devi","female","3-jan-2003",703068330,"bhojpura"); 
-		student second = new student(3, 3,"10","kirwergf","vqwretgurjar","pdfghi","female","3-jan-200we",703063230,"bhojwqura"); 
-		ob.save(first);
-		ob.save(second);
+        // student first = new student(1, 1,"10","kiran kasana","vinodi lal gurjar","prem devi","female","3-jan-2003",703068330,"bhojpura"); 
+		// student second = new student(3, 3,"10","kirwergf","vqwretgurjar","pdfghi","female","3-jan-200we",703063230,"bhojwqura"); 
+		// ob.save(first);
+		// ob.save(second);
 		// Optional<student> record=ob.findById(1);
 		// System.out.println("record"  );
        // record.stream().forEach(e->{

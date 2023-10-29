@@ -1,4 +1,4 @@
-package online.example.attendance;
+package online.example.attendance.table;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
