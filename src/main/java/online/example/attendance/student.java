@@ -1,5 +1,6 @@
 package online.example.attendance;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,15 +13,37 @@ public class student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
+    
+    @Column(name = "Student_id" ,length = 100,nullable=false)
     private int student_id;
+
+    // @Column(columnDefinition = "varchar(22) default 'Aayush'") 
+    @Column(name = "Student_roll_no" ,length = 100,nullable=false) 
     private int student_roll_no;
+
+    @Column(name = "Student_class" ,length = 30,nullable=false) 
     private String student_class;
+
+    @Column(name = "Student_full_name" ,length = 100,nullable=false) 
     private String student_full_name;
+
+    @Column(name = "Student_father_name" ,length = 100,nullable=false) 
     private String student_father_name;
+
+    @Column(name = "Student_mother_name" ,length = 100,nullable=true) 
     private String student_mother_name;
+
+    @Column(name = "Student_gender" ,length = 10,nullable=true) 
     private String student_gender;
+
+    @Column(name = "Student_DOB" ,length = 100,nullable=false) 
     private String student_DOB;
+
+    @Column(name = "Contact_number" ,length = 100,nullable=false) 
     private int Contact_number;
+
+    @Column(name = "Student_address" ,length = 100,nullable=false) 
     private String student_address;
 
 
