@@ -5,10 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class controller {
-    @GetMapping("/kasana")
-    String logiiiiin()
+    
+    @GetMapping("/online_attendance")
+    String attendanceAPI()
     {
-        return "kiran";
+        return "AttendaacePage";
     }
 
 }
