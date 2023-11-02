@@ -20,7 +20,7 @@ public class StudentDetailsTable {
     private int Student_Roll_No;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Student_Class" ,length = 30,nullable=false) 
+    @Column(name = "Class_Id" ,length = 30,nullable=false) 
     private int Class_Id;
 
     @Column(name = "Student_Full_Name" ,length = 100,nullable=false) 
