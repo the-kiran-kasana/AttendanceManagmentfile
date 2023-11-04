@@ -1,25 +1,28 @@
-package online.example.attendance.model;
+package online.example.attendance;
 
-public class StudentModel {
+
+public class StudentRequestBody {
     
-    private  int student_id;
-    private  int student_roll_no;
-    private  int  class_id;
+
+
+    private  String student_id;
+    private  String student_roll_no;
+    private  String  class_id;
     private  String student_full_name;
     private  String student_father_name;
     private  String student_mother_name;
     private  String student_gender;
     private  String student_dob;
-    private  int contact_number;
+    private  String contact_number;
     private  String student_address;
 
-     public StudentModel()
+     public StudentRequestBody()
      {
 
      }
 
-     public StudentModel(int student_id, int student_roll_no, int class_id, String student_full_name, String student_father_name, String student_mother_name, String student_gender,
-            String student_dob,int contact_number,String student_address) {
+     public StudentRequestBody(String student_id, String student_roll_no, String class_id, String student_full_name, String student_father_name, String student_mother_name, String student_gender,
+            String student_dob,String contact_number,String student_address) {
     
         this.student_id = student_id;
         this.student_roll_no =student_roll_no ;
@@ -37,27 +40,27 @@ public class StudentModel {
     
 
 
-    public int getstudent_id() {
+    public String getstudent_id() {
         return student_id;
     }
  
-    public void setstudent_id(int student_id) {
+    public void setstudent_id(String student_id) {
         this.student_id = student_id;
     }
  
-    public int getstudent_roll_no() {
+    public String getstudent_roll_no() {
         return student_roll_no;
     }
  
-    public void setstudent_roll_no(int student_roll_no) {
+    public void setstudent_roll_no(String student_roll_no) {
         this.student_roll_no = student_roll_no;
     }
  
-    public int getclass_id() {
+    public String getclass_id() {
         return class_id;
     }
  
-    public void setclass_id(int class_id) {
+    public void setclass_id(String class_id) {
         this.class_id = class_id;
     }
  
@@ -101,11 +104,11 @@ public class StudentModel {
         this.student_dob = student_dob;
     }
 
-     public int getcontact_number() {
+     public String getcontact_number() {
         return contact_number;
     }
  
-    public void setcontact_number(int contact_number) {
+    public void setcontact_number(String contact_number) {
         this.contact_number = contact_number;
     }
 
@@ -125,3 +128,6 @@ public class StudentModel {
     }
 
 }
+
+
+

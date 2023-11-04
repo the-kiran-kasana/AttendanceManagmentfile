@@ -8,41 +8,41 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Student_Details")
+@Table(name="student_details")
 public class StudentDetailsTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Student_Id" ,nullable=false)
-    private int Student_Id;
+    @Column(name = "student_id" ,nullable=false)
+    private int student_id;
 
-    @Column(name = "Student_Roll_No" ,length = 100,nullable=false) 
-    private int Student_Roll_No;
+    @Column(name = "student_roll_no" ,nullable=false)
+    private int student_roll_no;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Class_Id" ,length = 30,nullable=false) 
-    private int Class_Id;
+    @Column(name = "class_id" ,nullable=false)
+    private int class_id;
 
-    @Column(name = "Student_Full_Name" ,length = 100,nullable=false) 
-    private String Student_Full_Name;
+    @Column(name = "student_full_name" ,nullable=false)
+    private String student_full_name;
 
-    @Column(name = "Student_Father_Name" ,length = 100,nullable=false) 
-    private String Student_Father_Name;
+    @Column(name = "student_father_name" ,nullable=false)
+    private String student_father_name;
 
-    @Column(name = "Student_Mother_Name" ,length = 100,nullable=true) 
-    private String Student_Mother_Name;
+    @Column(name = "student_mother_name" ,nullable=true)
+    private String student_mother_name;
 
-    @Column(name = "Student_Gender" ,length = 10,nullable=true) 
-    private String Student_Gender;
+    @Column(name = "student_gender" ,nullable=true)
+    private String student_gender;
 
-    @Column(name = "Student_DOB" ,length = 100,nullable=false) 
-    private String Student_DOB;
+    @Column(name = "student_dob" ,nullable=false)
+    private String student_dob;
 
-    @Column(name = "Contact_Number" ,length = 100, nullable=false) 
-    private int Contact_Number;
+    @Column(name = "contact_number" , nullable=false)
+    private int contact_number;
 
-    @Column(name = "Student_Address" ,length = 100,nullable=false) 
-    private String Student_Address;
+    @Column(name = "student_address" ,nullable=false)
+    private String student_address;
 
    public StudentDetailsTable()
    {
@@ -50,19 +50,19 @@ public class StudentDetailsTable {
    }
     
 
-    public StudentDetailsTable(int Student_Id, int Student_Roll_No, int Class_Id, String Student_Full_Name, String Student_Father_Name, String Student_Mother_Name, String Student_Gender,
-            String Student_DOB,int Contact_Number,String Student_Address) {
+    public StudentDetailsTable(int student_id, int student_roll_no, int class_id, String student_full_name, String student_father_name, String student_mother_name, String student_gender,
+            String student_dob,int contact_number,String student_address) {
         super();
-        this.Student_Id = Student_Id;
-        this.Student_Roll_No =Student_Roll_No ;
-        this.Class_Id = Class_Id;
-        this.Student_Full_Name = Student_Full_Name;
-        this.Student_Father_Name =  Student_Father_Name;
-        this.Student_Mother_Name = Student_Mother_Name;
-        this.Student_Gender = Student_Gender;
-        this.Student_DOB = Student_DOB;
-        this.Contact_Number = Contact_Number;
-        this.Student_Address = Student_Address;
+        this.student_id = student_id;
+        this.student_roll_no =student_roll_no ;
+        this.class_id = class_id;
+        this.student_full_name = student_full_name;
+        this.student_father_name =  student_father_name;
+        this.student_mother_name = student_mother_name;
+        this.student_gender = student_gender;
+        this.student_dob = student_dob;
+        this.contact_number = contact_number;
+        this.student_address = student_address;
     }
 
 
@@ -70,91 +70,91 @@ public class StudentDetailsTable {
     
 
 
-    public int getStudent_Id() {
-        return Student_Id;
+    public int getstudent_id() {
+        return student_id;
     }
  
-    public void setStudent_Id(int Student_Id) {
-        this.Student_Id = Student_Id;
+    public void setstudent_id(int student_id) {
+        this.student_id = student_id;
     }
  
-    public int getStudent_Roll_No() {
-        return Student_Roll_No;
+    public int getstudent_roll_no() {
+        return student_roll_no;
     }
  
-    public void setStudent_Roll_No(int Student_Roll_No) {
-        this.Student_Roll_No = Student_Roll_No;
+    public void setstudent_roll_no(int student_roll_no) {
+        this.student_roll_no = student_roll_no;
     }
  
-    public int getClass_Id() {
-        return Class_Id;
+    public int getclass_id() {
+        return class_id;
     }
  
-    public void setClass_Id(int Class_Id) {
-        this.Class_Id = Class_Id;
+    public void setclass_id(int class_id) {
+        this.class_id = class_id;
     }
  
-    public String getStudent_Full_Name() {
-        return Student_Full_Name;
+    public String getstudent_full_name() {
+        return student_full_name;
     }
  
-    public void setStudent_Full_Name(String Student_Full_Name) {
-        this.Student_Full_Name =Student_Full_Name;
+    public void setstudent_full_name(String student_full_name) {
+        this.student_full_name =student_full_name;
     }
  
-    public String getStudent_Father_Name() {
-        return Student_Father_Name;
+    public String getstudent_father_name() {
+        return student_father_name;
     }
  
-    public void setStudent_Father_Name(String Student_Father_Name) {
-        this.Student_Father_Name = Student_Father_Name;
+    public void setstudent_father_name(String student_father_name) {
+        this.student_father_name = student_father_name;
     }
  
-    public String getStudent_Mother_Name() {
-        return Student_Mother_Name;
+    public String getstudent_mother_name() {
+        return student_mother_name;
     }
  
-    public void setStudent_Mother_Name(String Student_Mother_Name) {
-        this.Student_Mother_Name = Student_Mother_Name;
+    public void setstudent_mother_name(String student_mother_name) {
+        this.student_mother_name = student_mother_name;
     }
  
-    public String getStudent_Gender() {
-        return Student_Gender;
+    public String getstudent_gender() {
+        return student_gender;
     }
  
-    public void setStudent_Gender(String Student_Gender) {
-        this.Student_Gender = Student_Gender;
+    public void setstudent_gender(String student_gender) {
+        this.student_gender = student_gender;
     }
  
-    public String getStudent_DOB() {
-        return Student_DOB;
+    public String getstudent_dob() {
+        return student_dob;
     }
  
-    public void setStudent_DOB(String Student_DOB) {
-        this.Student_DOB = Student_DOB;
+    public void setstudent_dob(String student_dob) {
+        this.student_dob = student_dob;
     }
 
-     public int getContact_Number() {
-        return Contact_Number;
+     public int getcontact_number() {
+        return contact_number;
     }
  
-    public void setContact_Number(int Contact_Number) {
-        this.Contact_Number = Contact_Number;
+    public void setcontact_number(int contact_number) {
+        this.contact_number = contact_number;
     }
 
 
-     public String getStudent_Address () {
-        return Student_Address ;
+     public String getstudent_address() {
+        return student_address ;
     }
  
-    public void setStudent_Address (String Student_Address ) {
-        this.Student_Address  = Student_Address ;
+    public void setstudent_address (String student_address) {
+        this.student_address = student_address ;
     }
  
     @Override
     public String toString() {
-        return "details [student_id=" + Student_Id + ", student_roll_no=" + Student_Roll_No + ", student_class=" + Class_Id + ", student_full_name=" + Student_Full_Name
-                + ", student_father_name=" + Student_Father_Name + ", student_mother_name=" + Student_Mother_Name + ", student_gender=" + Student_Gender + ", student_DOB=" + Student_DOB + ", Contact_number=" + Contact_Number + ", student_address=" + Student_Address + "]";
+        return "details [student_id=" + student_id + ", student_roll_no=" + student_roll_no + ", student_class=" + class_id + ", student_full_name=" + student_full_name
+                + ", student_father_name=" + student_father_name + ", student_mother_name=" + student_mother_name + ", student_gender=" + student_gender + ", student_DOB=" + student_dob + ", Contact_number=" + contact_number + ", student_address=" + student_address + "]";
     }
  
 }
