@@ -8,85 +8,85 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 
 @Entity
-@Table(name="Teachers_Details")
+@Table(name="teachers_details")
 public class TeacherDetailsTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Teacher_Id",length = 10,nullable = false)
-    private int Teacher_Id;
+    @Column(name="teacher_id",nullable = false)
+    private int teacher_id;
 
-    @Column(name="Teacher_Name",length = 100,nullable = false)
-    private String Teacher_Name;
+    @Column(name="teacher_name",nullable = false)
+    private String teacher_name;
 
-    @Column(name="Subject",length = 100,nullable = true)
-    private String Subject;
+    @Column(name="subject",nullable = true)
+    private String subject;
 
-    @Column(name="Class_Id",length = 10,nullable = false)
+    @Column(name="class_id",nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Class_Id;
+    private int class_id;
 
     public TeacherDetailsTable()
     {
 
     }
 
-    public TeacherDetailsTable(int Teacher_Id,String Teacher_Name,String Subject,int Class_Id)
+    public TeacherDetailsTable(int teacher_id,String teacher_name,String subject,int class_id)
     {
-        this.Teacher_Id=Teacher_Id;
-        this.Teacher_Name=Teacher_Name;
-        this.Subject=Subject;
-        this.Class_Id=Class_Id;    
+        this.teacher_id=teacher_id;
+        this.teacher_name=teacher_name;
+        this.subject=subject;
+        this.class_id=class_id;    
     }
 
-    public int getTeacher_Id()
+    public int getteacher_id()
     {
-        return Teacher_Id;
+        return teacher_id;
     }
 
-    public void setTeacher_Id(int Teacher_Id)
+    public void setteacher_id(int teacher_id)
     {
-        this.Teacher_Id=Teacher_Id;
-    }
-
-
-    public String getTeacher_Name()
-    {
-        return Teacher_Name;
-    }
-
-    public void setTeacher_Name(String Teacher_Name)
-    {
-        this.Teacher_Name=Teacher_Name;
+        this.teacher_id=teacher_id;
     }
 
 
-    public String getSubject()
+    public String getteacher_name()
     {
-        return Subject;
+        return teacher_name;
     }
 
-    public void setSubject(String Subject)
+    public void setteacher_name(String teacher_name)
     {
-        this.Subject=Subject;
+        this.teacher_name=teacher_name;
     }
 
-    public int getClass_Id()
+
+    public String getsubject()
     {
-        return Class_Id;
+        return subject;
     }
 
-    public void setClass_Id(int Class_Id)
+    public void setsubject(String subject)
     {
-        this.Class_Id=Class_Id;
+        this.subject=subject;
+    }
+
+    public int getclass_id()
+    {
+        return class_id;
+    }
+
+    public void setclass_id(int class_id)
+    {
+        this.class_id=class_id;
     }
 
     @Override
     public String toString()
     {
         return "{"
-                   +"teacher_id" + Teacher_Id +", teacher_name " + Teacher_Name + 
-                    ", subject " + Subject + " , class_id " + Class_Id +
+                   +"teacher_id" + teacher_id +", teacher_name " + teacher_name + 
+                    ", subject " + subject + " , class_id " + class_id +
                 "}";
     }
     

@@ -10,13 +10,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import online.example.attendance.Entity.Attendancepage;
-import online.example.attendance.repostery.AttnedanceRepo;
+//import online.example.attendance.repostery.AttnedanceRepo;
 
 
 @SpringBootApplication
 public class AttendanceApplication implements CommandLineRunner {
 
-	@Autowired AttnedanceRepo ob;
+	//@Autowired AttnedanceRepo ob;
 
 
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package online.example.attendance;
+package online.example.attendance.requestbody;
 
 
 public class StudentRequestBody {

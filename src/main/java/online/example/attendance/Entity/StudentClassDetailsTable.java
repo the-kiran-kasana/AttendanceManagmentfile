@@ -8,52 +8,65 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Class_Table")
+@Table(name="class_table")
 public class StudentClassDetailsTable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Class_Id", length=30,nullable = false)
-    private int Class_Id;
+    @Column(name="class_id", nullable = false)
+    private int class_id;
 
-    @Column(name="Class_Name", length=50,nullable = false)
-    private String Class_Name;
+    @Column(name="class_num", nullable = false)
+    private int class_num;
+
+    @Column(name="class_name",nullable = false)
+    private String class_name;
 
     public StudentClassDetailsTable()
     {
         
     }
 
-    public StudentClassDetailsTable(int Class_Id,String Class_Name)
+    public StudentClassDetailsTable(int class_id,int class_num, String class_name)
     {
-        this.Class_Id=Class_Id;
-        this.Class_Name=Class_Name;
+        this.class_id=class_id;
+        this.class_num=class_num;
+        this.class_name=class_name;
     }
 
-    public int getClass_Id() {
-        return Class_Id;
+    public int getclass_id() {
+        return class_id;
     }
  
-    public void setClass_Id(int Class_Id) {
-        this.Class_Id = Class_Id;
+    public void setclass_id(int class_id) {
+        this.class_id = class_id;
     }
 
-    public String getClass_Name()
-    {
-        return Class_Name;
+    public int getclass_num() {
+        return class_num;
+    }
+ 
+    public void setclass_num(int class_num) {
+        this.class_num = class_num;
     }
 
-    public void setClass_Name(String Class_Name)
+    public String getclass_name()
     {
-        this.Class_Name=Class_Name;
+        return class_name;
+    }
+
+    public void setclass_name(String class_name)
+    {
+        this.class_name=class_name;
     }
     
     @Override
     public String toString()
     {
         return "{"
-                  +"class_id " + Class_Id +
-                  ",class_name" + Class_Name +
+                  +"class_id " + class_id +
+                  "class_no " + class_num +
+                  ",class_name" + class_name +
                 "}";
     }
     
