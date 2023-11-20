@@ -12,4 +12,10 @@ public class controller {
         return "AttendaacePage";
     }
 
+    @GetMapping("/newpage")
+    String API()
+    {
+        return "newattendancepage";
+    }
+
 }

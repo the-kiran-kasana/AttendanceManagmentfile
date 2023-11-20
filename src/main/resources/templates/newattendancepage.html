@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script defer src="/javascript/atten.js"></script>
+      <link rel="stylesheet" type="text/css" href="/css/attendance_css.css">
+    <title>Attendance Page</title>
+</head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav button {
+            background-color: #555;
+            color: #fff;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        nav button:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        #content {
+            margin: 20px;
+        }
+
+        #filters {
+            display: inline-block;
+            width: 300px;
+        }
+
+        #filters section {
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .attendance-section {
+            display: inline-block;
+            width: 300px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .student-list {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .student-list th, .student-list td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .student-list th {
+            background-color: #333;
+        }
+
+        #submitBtn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .section-like {
+             background-color: #e7e9ea; 
+             border: 1px solid #9e9d9d; 
+             border-radius: 5px;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Attendance Management System</h1>
+    </header>
+
+    <nav>
+        <button onclick="showTakeAttendance()">Take Attendance</button>
+        <button onclick="showCheckHistory()">Check History</button>
+    </nav>
+
+
+
+
+    <div class="attendance-section" id="attendanceSection">
+
+        <section style="margin-bottom: 10px;">
+            <label for="school">School:</label>
+            <select id="school" name="school" style="width: 100%;">
+            <option value="school1">Select School</option>
+            </select>
+         </section>
+
+         <section style="margin-bottom: 10px;">
+            <label for="class">Class:</label>
+            <select id="class" name="class" style="width: 100%;">
+            <option value="school1">Select Class</option>
+            </select>
+         </section>
+    
+         <section style="margin-bottom: 10px;">
+            <label for="date">Date:</label>
+            <div  class="section-like" id="date" style="width: 100%; height: 18px;"></div>
+         </section>
+    </div>
+
+
+
+
+    <div class="student-list-section" id="studentListSection">
+        <table class="student-list" id="student-list">
+        </table>
+    </div>
+
+
+    <div class="button-container">
+        <button id="submitBtn" type="button" onclick="submitAttendance()">Submit Attendance</button>
+    </div>
+
+</body>
+</html>
+

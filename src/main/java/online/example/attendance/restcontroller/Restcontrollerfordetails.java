@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import online.example.attendance.Entity.StudentDetailsTable;
 import online.example.attendance.Entity.StudentClassDetailsTable;
 import online.example.attendance.Entity.TeacherDetailsTable;
+import online.example.attendance.Entity.schooltable;
+import online.example.attendance.repostery.SchoolRepo;
 import online.example.attendance.repostery.StudentClassDetailsRepo;
 import online.example.attendance.repostery.TeacherDetailsRepo;
 import online.example.attendance.repostery.StudentDetailsRepo;
+
+
 import java.util.List;
 import java.util.Optional;
 
@@ -30,8 +34,24 @@ public class Restcontrollerfordetails {
 
     @Autowired
     private StudentDetailsRepo repo;
+    @Autowired
     private StudentClassDetailsRepo repo1;
+    @Autowired
     private TeacherDetailsRepo repo2;
+    @Autowired
+    private SchoolRepo repo3;
+
+    
+
+
+
+
+    @GetMapping("/classrowlength")
+    public long list() {return repo1.count();}
+    
+    
+
+
 
 
     @GetMapping("/student")
@@ -42,6 +62,9 @@ public class Restcontrollerfordetails {
 
     @GetMapping("/teacher")
     public List<TeacherDetailsTable> getAlldetailofteacher(){return repo2.findAll();}
+
+    @GetMapping("/school")
+    public List<schooltable> getAlldetailofschool(){return repo3.findAll();}
 
 
 
@@ -56,6 +79,9 @@ public class Restcontrollerfordetails {
     @GetMapping("/teacher/{id}")
     public Optional<TeacherDetailsTable> getteacherById(@PathVariable(value = "id") int id){ return repo2.findById(id); }
 
+    @GetMapping("/school/{id}")
+    public Optional<schooltable> getschoolById(@PathVariable(value = "id") int id){ return repo3.findById(id); }
+
 
 
 
@@ -67,6 +93,10 @@ public class Restcontrollerfordetails {
 
     @DeleteMapping("/deleteteacher/{id}")
     public void deleteteacher(@PathVariable(value = "id") int id){repo2.deleteById(id); }
+
+    @DeleteMapping("/deleteschool/{id}")
+    public void deleteschool(@PathVariable(value = "id") int id){repo3.deleteById(id); }
+
 
 
 
@@ -112,6 +142,17 @@ public class Restcontrollerfordetails {
         int class_id=teacher.getclass_id();
         TeacherDetailsTable teacherdetails = new TeacherDetailsTable(teacher_id,teacher_name,subject,class_id);
         return repo2.save(teacherdetails);
+    }
+
+    @PostMapping("/add_school_details")
+    @ResponseStatus(HttpStatus.CREATED)
+    public schooltable addschool(@RequestBody schooltable school)
+    {
+        int school_id=school.getschool_id();
+        String school_name=school.getschool_name();
+        String city_name=school.getcity_name();
+        schooltable schooltable = new schooltable(school_id,school_name,city_name);
+        return repo3.save(schooltable);
     }
 
 

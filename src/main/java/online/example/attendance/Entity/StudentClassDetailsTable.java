@@ -69,6 +69,6 @@ public class StudentClassDetailsTable {
                   ",class_name" + class_name +
                 "}";
     }
-    
+
  
 }
