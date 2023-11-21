@@ -140,7 +140,7 @@ function addteachers()
 
 function addteacherdetail(){
 
-  console.log("add class details");
+
 
   var teacher_name = document.getElementById('teacher_name').value;
   var subject = document.getElementById('subject').value;
@@ -152,7 +152,7 @@ function addteacherdetail(){
   }
   else
   {
-    console.log("form is fill now");
+  
     const user = {teacher_name,subject,class_id};
 
     const xhr = new XMLHttpRequest();
@@ -178,7 +178,7 @@ function addteacherdetail(){
 
 function addclassdetail() {
 
-    console.log("add class details");
+    
   
     var class_num = document.getElementById('class_no').value;
     var class_name = document.getElementById('class_name').value;
@@ -189,7 +189,7 @@ function addclassdetail() {
     }
     else
     {
-      console.log("form is fill now");
+      
       const user = {class_num,class_name};
   
       const xhr = new XMLHttpRequest();
@@ -321,7 +321,7 @@ function detail()
          {
           if (this.readyState == 4 && this.status == 200)
            {
-              console.log("value first" + this.responseText);
+            
 
               if (this.responseText != null)
                 {

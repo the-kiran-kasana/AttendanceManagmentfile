@@ -3,28 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Value on Option Change</title>
+    <title>Attendance Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
-    <section id="mySection">
-        <select id="mySelect">
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
+    <form id="attendanceForm">
+        <label for="studentId">Student ID:</label>
+        <input type="text" id="studentId" name="studentId" required>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="status">Attendance Status:</label>
+        <select id="status" name="status" required>
+            <option value="present">Present</option>
+            <option value="absent">Absent</option>
         </select>
-    </section>
+
+        <button type="button" onclick="submitAttendance()">Submit Attendance</button>
+    </form>
 
     <script>
-        // Fetch the select element within the section by its ID
-        var selectElement = document.getElementById("mySelect");
+        function submitAttendance() {
+            // Get values from the form
+            var studentId = document.getElementById("studentId").value;
+            var date = document.getElementById("date").value;
+            var status = document.getElementById("status").value;
 
-        // Add a change event listener to the select element
-        selectElement.addEventListener("change", function() {
-            // Update the selectElement variable when an option is selected
-            var selectedValue = selectElement.value;
-            console.log("Selected value:", selectedValue);
-        });
+            // Perform validation if needed
+
+            // Send the data to the server using AJAX or fetch API
+            // Here, you would typically make an API call to your server to handle the database insertion
+
+            // For demonstration purposes, we'll log the data to the console
+            console.log("Student ID: " + studentId);
+            console.log("Date: " + date);
+            console.log("Status: " + status);
+
+            // You can add AJAX or fetch API code here to send data to the server
+        }
     </script>
 
 </body>
