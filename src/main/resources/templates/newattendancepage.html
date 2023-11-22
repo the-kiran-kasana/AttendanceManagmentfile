@@ -4,7 +4,6 @@
     <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script defer src="/javascript/atten.js"></script>
-      <link rel="stylesheet" type="text/css" href="/css/attendance_css.css">
     <title>Attendance Page</title>
 </head>
     <style>
@@ -21,6 +20,13 @@
             padding: 15px;
             text-align: center;
         }
+
+        /* footer {
+            background-color: #5d5d5d;
+            color: #fff;
+            padding: 5px;
+            text-align: center;
+        } */
 
         nav {
             background-color: #444;
@@ -68,9 +74,10 @@
         }
 
         th {
-            background-color: #4CAF50;
+            background-color: #333;
             color: white;
         }
+
 
         .attendance-section {
             display: inline-block;
@@ -97,11 +104,13 @@
 
         #submitBtn {
             display: block;
+            width: 255px;
             margin: 20px auto;
-            padding: 10px;
+            padding: 5px;
             background-color: #3498db;
             color: white;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
         }
 
@@ -115,21 +124,17 @@
 </head>
 <body>
 
-    <header>
+        <header>
         <h1>Attendance Management System</h1>
-    </header>
+        </header>
 
-    <nav>
-        <button onclick="showTakeAttendance()">Take Attendance</button>
-        <button onclick="showCheckHistory()">Check History</button>
-    </nav>
+         <nav>
+         <button onclick="showTakeAttendance()">Take Attendance</button>
+         <button onclick="showCheckHistory()">Check History</button>
+         </nav>
 
-
-
-
-    <div class="attendance-section" id="attendanceSection">
-
-        <section style="margin-bottom: 10px;">
+        <div class="attendance-section" id="attendanceSection">
+         <section style="margin-bottom: 10px;">
             <label for="school">School:</label>
             <select id="school" name="school" style="width: 100%;">
             <option value="school1">Select School</option>
@@ -147,24 +152,20 @@
             <label for="date">Date:</label>
             <div  class="section-like" id="date" style="width: 100%; height: 18px;"></div>
          </section>
-    </div>
 
+         <button  id="submitBtn">Submit Attendance</button>
+        </div>
 
+        <hr>
 
+        <div class="student-list-section" id="studentListSection"></div>
 
-    <div class="student-list-section" id="studentListSection">
-        <table class="student-list" id="student-list">
-        </table>
-    </div>
-
-
-    <div class="button-container">
-        <button id="submitBtn" type="button" onclick="submitAttendance()">Submit Attendance</button>
-    </div>
-
-
-    <button id="submitButton">Submit</button>
-
+     <footer>
+        <div style="background-color: #333; color: #fff;margin-top: 200px; padding: 10px; text-align: center;">
+            &copy; 2023 Attendance Management System. All rights reserved.
+        </div>
+    </footer>
+ 
 
 </body>
 </html>

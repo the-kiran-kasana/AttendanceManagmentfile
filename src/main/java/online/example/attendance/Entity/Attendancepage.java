@@ -1,5 +1,7 @@
 package online.example.attendance.Entity;
 
+import java.util.List;
+
 //import java.sql.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,13 +18,15 @@ import jakarta.persistence.Table;
 public class Attendancepage {
 
     @Id
-    @Column(name="Student_Id",length =10,nullable = false)
+    @Column(name="attendance_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Student_Id;
+    private int attendance_id;
 
-    @Column(name="Teacher_Id",length =10,nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Teacher_Id;
+   @Column(name="student_id")
+    private int student_id;
+
+    @Column(name="teacher_id",length =10,nullable = false)
+    private int teacher_id;
 
     @Column(nullable = false)
    // @Temporal(TemporalType.DATE)
@@ -36,32 +40,45 @@ public class Attendancepage {
         
     }
 
-    public Attendancepage(int Student_Id, int Teacher_Id,String date,boolean isPresent)
+    public Attendancepage(int attendance_id,int student_id, int teacher_id,String date,boolean isPresent)
     {
-      this.Student_Id=Student_Id;
-      this.Teacher_Id=Teacher_Id;
+      this.attendance_id=attendance_id;
+      this.student_id=student_id;
+      this.teacher_id=teacher_id;
       this.date=date;
       this.isPresent=isPresent;
     }
-    
-    public int getStudent_Id()
+
+
+    public int getattendance_id()
     {
-        return Student_Id;
+        return attendance_id;
     }
 
-    public void setStudent_Id(int Student_Id)
+    public void setattendance_id(int attendance_id)
     {
-        this.Student_Id=Student_Id;
+        this.attendance_id=attendance_id;
     }
     
-    public int getTeacher_Id()
+
+    public int getstudent_id()
     {
-        return Teacher_Id;
+        return student_id;
     }
 
-    public void setTeacher_Id(int Teacher_Id)
+    public void setstudent_id(int student_id)
     {
-        this.Teacher_Id=Teacher_Id;
+        this.student_id=student_id;
+    }
+    
+    public int getteacher_id()
+    {
+        return teacher_id;
+    }
+
+    public void setteacher_id(int teacher_id)
+    {
+        this.teacher_id=teacher_id;
     }
 
     public String getdate()
@@ -88,10 +105,13 @@ public class Attendancepage {
     public String toString()
     {
         return "{" 
-                   + "student_id" + Student_Id + ", teacher_id" + Teacher_Id + 
+                   +"Attendance_Id"+ attendance_id
+                   + "student_id" + student_id + ", teacher_id" + teacher_id + 
                    ", date" + date + ", presention" + isPresent +
                "}";
     }
+
+   
 
 
 

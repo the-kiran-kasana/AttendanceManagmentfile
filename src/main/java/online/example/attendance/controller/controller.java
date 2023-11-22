@@ -9,7 +9,7 @@ public class controller {
     @GetMapping("/online_attendance")
     String attendanceAPI()
     {
-        return "AttendaacePage";
+        return "HomePage";
     }
 
     @GetMapping("/newpage")
@@ -18,4 +18,21 @@ public class controller {
         return "newattendancepage";
     }
 
+    @GetMapping("/addstudentdetails")
+    String addstudent()
+    {
+        return "AddStudentDetails";
+    }
+
+    @GetMapping("/addteacherdetails")
+    String addteachers()
+    {
+        return "AddTeacherDetails";
+    }
+
+    @GetMapping("/addclassdetails")
+    String addclasses()
+    {
+        return "AddClassDetails";
+    }
 }

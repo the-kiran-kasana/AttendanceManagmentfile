@@ -7,17 +7,11 @@ function join(date, options, separator) {
      return formatter.format(date);}
      return options.map(format).join(separator);
 }
-
 let options = [{day: 'numeric'}, {month: 'short'}, {year: 'numeric'}];
 let joined = join(new Date, options, '-');
 document.getElementById("date").innerHTML=joined;
 
 
-
-
-
-
-//for take student attendance
 
 function showTakeAttendance()
 { 
@@ -41,24 +35,6 @@ function showTakeAttendance()
         xhttp.setRequestHeader("Accept", "application/json");
         xhttp.setRequestHeader("Content-Type", "application/json");
         xhttp.send();
-
-
-
-        // var selectElement = document.getElementById("mySelect");
-
-        // // Add a change event listener to the select element
-        // selectElement.addEventListener("change", function() {
-        //     // Update the selectElement variable when an option is selected
-        //     var selectedValue = selectElement.value;
-        //     console.log("Selected value:", selectedValue);
-        // });
-
-
-
-
-
-
-
 
 
 
@@ -102,7 +78,6 @@ function showTakeAttendance()
                         if(parse[i].class_name===selectedValue)
                         {
                             var id=parse[i].class_id;
-                            console.log("show class id " + id);
                             showstudentlistbytheclasss(id);
                         }
                     }
@@ -121,29 +96,29 @@ function showTakeAttendance()
 
 function showstudentlistbytheclasss(id)
 {
-    const xhr = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
         let bookListString;   
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                if (this.responseText != null) {
-                    bookListString = this.responseText;
-                    var parseResponse = JSON.parse(bookListString);
-        
-                    var buildTable = "<table border='1'>";
-                    buildTable += "<tr><th>Roll No</th><th>Full Name</th><th>Father Name</th><th>Present / Absent</th></tr>";
-        
-                    for (let i in parseResponse) {
-
-                        if(id===parseResponse[i].class_id)
-                        {
-                          buildTable += takeattendance(parseResponse[i].student_roll_no, parseResponse[i].student_full_name, parseResponse[i].student_father_name);
-                          callattendancetable(parseResponse[i].student_id);
-                        }
-                    }       
-                    buildTable += "</table>";        
-                    document.getElementById("student-list").innerHTML = buildTable;
+        xhr.onreadystatechange = function ()
+        {
+         if (this.readyState == 4 && this.status == 200)
+         {
+           if (this.responseText != null)
+           {
+              bookListString = this.responseText;
+              var parseResponse = JSON.parse(bookListString);
+              var buildTable = "<table border='1'>";
+              buildTable += "<tr><th>Roll No</th><th>Full Name</th><th>Father Name</th><th>Present / Absent</th></tr>";
+              for (let i in parseResponse)
+              {
+                if(id===parseResponse[i].class_id)
+                {
+                  buildTable += takeattendance(parseResponse[i].student_id,parseResponse[i].student_roll_no, parseResponse[i].student_full_name, parseResponse[i].student_father_name);
                 }
-            }
+              }       
+              buildTable += "</table>";   
+              document.getElementById("studentListSection").innerHTML = buildTable;
+           }
+         }
         };
         xhr.open('GET', "http://localhost:8080/student", true);
         xhr.setRequestHeader("Accept", "application/json");
@@ -153,57 +128,95 @@ function showstudentlistbytheclasss(id)
 
 
 
-function takeattendance(studentRollNo, studentFullName, studentFatherName) {
+function takeattendance(student_id,studentRollNo, studentFullName, studentFatherName) {
     var row = "<tr>";
     row += "<td>" + studentRollNo + "</td>";
     row += "<td>" + studentFullName + "</td>";
     row += "<td>" + studentFatherName + "</td>";
-    row += "<td><input type='checkbox' name='attendanceStatus' id='attendanceStatus_" + studentRollNo + "'></td>";
+    row +=
+    "<td><input type='checkbox' name='attendanceStatus' id='attendanceStatus_" +studentRollNo +
+    "' class='attendance-checkbox' data-student-id='" + student_id + "'></td>";    
     row += "</tr>";
     return row;
 }
 
 
-
-// function handleCheckboxValues() {
-//     // Select all checkboxes with name 'attendanceStatus'
-//     var checkboxes = document.querySelectorAll('input[name="attendanceStatus"]');
-
-//     // Loop through the checkboxes and retrieve their values
-//     checkboxes.forEach(function (checkbox) {
-//         console.log(checkbox.id, checkbox.checked);
-//         // You can use checkbox.id and checkbox.checked as needed
-//     });
-// }
-
-
-function callattendancetable(student_id)
-{
-   
-
-document.getElementById('submitButton').addEventListener('click', function () {
-    handleCheckboxValues(student_id);
+document.getElementById('submitBtn').addEventListener('click', function () {
+    handleCheckboxValues();
 });
-}
 
-
-
-function handleCheckboxValues(student_id) {
-    
+function handleCheckboxValues()
+{
     var checkboxes = document.querySelectorAll('input[name="attendanceStatus"]');
-
-    
-    var checkboxValues = [];
-
     checkboxes.forEach(function (checkbox) {
-        checkboxValues.push({
-            checked: checkbox.checked
-        });
+        var student_id=checkbox.dataset.studentId;
+        var isChecked=checkbox.checked;
+        AddDetailsInAttendanceTable(student_id,isChecked);
     });
+}
+ 
 
-    console.log("attendance table");
-    console.log(joined,student_id,checkboxValues);
+function AddDetailsInAttendanceTable(studentId,isChecked)
+{
+    var student_id  =  studentId;
+    var teacher_id  =  "";
+    var  date       =  joined;
+    var is_present  =  isChecked;
+    const user = {student_id,teacher_id,date,is_present};
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', "http://localhost:8080/add__details_in_attendance_table", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function () {
+    var response=this.responseText;
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        console.log(response);
+    }};
+    body=JSON.stringify(user)
+    xhr.send(body);
 }
 
+
+
+
+
+
+function  showCheckHistory()
+{
+    const xhr = new XMLHttpRequest();
+    let AttendaceListString;   
+    xhr.onreadystatechange = function ()
+    {
+     if (this.readyState == 4 && this.status == 200)
+     {
+       if (this.responseText != null)
+       {
+          AttendaceListString = this.responseText;
+          var parseResponse = JSON.parse(AttendaceListString);
+          var buildTable = "<table border='1'>";
+          buildTable += "<tr><th>Date</th><th>Students_Id</th><th>Present / Absent</th></tr>";
+          for (let i in parseResponse)
+          {
+              buildTable += historyattendance(parseResponse[i].date,parseResponse[i].student_id,parseResponse[i].is_present);
+          }       
+          buildTable += "</table>";   
+          document.getElementById("studentListSection").innerHTML = buildTable;
+       }
+     }
+    };
+    xhr.open('GET', "http://localhost:8080/attendance", true);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send();
+}
+
+
+function historyattendance(date,student_id, is_present) {
+    var row = "<tr>";
+    row += "<td>" + date + "</td>";
+    row += "<td>" + student_id + "</td>";
+    row += "<td>" + is_present + "</td>";   
+    row += "</tr>";
+    return row;
+}
 
 

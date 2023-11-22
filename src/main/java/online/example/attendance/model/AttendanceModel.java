@@ -3,8 +3,9 @@ package online.example.attendance.model;
 import java.sql.Date;
 
 public class AttendanceModel {
-    int Student_Id;
-    int Teacher_Id;
+    int attendance_id;
+    int student_id;
+    int teacher_id;
     Date date;
     boolean isPresent;
 
@@ -12,32 +13,46 @@ public class AttendanceModel {
     {
 
     }
-    public AttendanceModel(int Student_Id, int Teacher_Id,Date date,boolean isPresent)
+    public AttendanceModel(int attendance_id,int student_id, int teacher_id,Date date,boolean isPresent)
     {
-      this.Student_Id=Student_Id;
-      this.Teacher_Id=Teacher_Id;
+      this.attendance_id=attendance_id;
+      this.student_id=student_id;
+      this.teacher_id=teacher_id;
       this.date=date;
       this.isPresent=isPresent;
     }
     
-    public int getStudent_Id()
+
+
+    public int getattendance_id()
     {
-        return Student_Id;
+        return attendance_id;
     }
 
-    public void setStudent_Id(int Student_Id)
+    public void setattendance_id(int attendance_id)
     {
-        this.Student_Id=Student_Id;
+        this.attendance_id=attendance_id;
     }
     
-    public int getTeacher_Id()
+
+    public int getstudent_id()
     {
-        return Teacher_Id;
+        return student_id;
     }
 
-    public void setTeacher_Id(int Teacher_Id)
+    public void setstudent_id(int student_id)
     {
-        this.Teacher_Id=Teacher_Id;
+        this.student_id=student_id;
+    }
+    
+    public int getteacher_id()
+    {
+        return teacher_id;
+    }
+
+    public void setteacher_id(int teacher_id)
+    {
+        this.teacher_id=teacher_id;
     }
 
     public Date getdate()
@@ -63,8 +78,8 @@ public class AttendanceModel {
     @Override
     public String toString()
     {
-        return "{" 
-                   + "student_id" + Student_Id + ", teacher_id" + Teacher_Id + 
+        return "{" + "Attendance_Id" + attendance_id
+                   + "student_id" + student_id + ", teacher_id" + teacher_id + 
                    ", date" + date + ", presention" + isPresent +
                "}";
     }

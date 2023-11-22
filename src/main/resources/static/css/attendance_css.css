@@ -1,6 +1,6 @@
  .menu-btn {
-    background-color:  #444;
-    color: rgb(237, 236, 236);
+  background-color: #b8b6b6;
+    color: rgb(36, 35, 35);
     padding: 16px;
     font-size: 12px;
     font-weight: bolder;
@@ -8,15 +8,8 @@
     border: none;
  }
 
- .menu-content {
-    display: none;
-    position: absolute;
-    background-color:  #444;
-    min-width: 20px;
-    z-index: 1;
- }
  nav{
-   background-color: #444;
+   background-color: #b8b6b6;
 
  }
 
@@ -90,15 +83,6 @@ font-size: 30px;
   padding: 20px 0;
 }
 
-body{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  overflow: hidden;
-  justify-content: center;
-  
-}
 
 #icon{
    border-color: transparent;

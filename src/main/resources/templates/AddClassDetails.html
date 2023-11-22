@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="/javascript/attendance_js.js"></script>
+    <title>Student Details</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+        }
+
+        #studentDetails {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        /* Arrange labels and inputs in a two-column layout */
+        label, input, select {
+            display: inline-block;
+            width: 48%; /* Set the width as needed */
+            box-sizing: border-box;
+            vertical-align: top;
+        }
+
+        /* Clear the float after every two elements to start a new line */
+        label:nth-child(2n), input:nth-child(2n), select:nth-child(2n) {
+            margin-right: 0;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width:200px;
+            margin-left: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="studentDetails">
+    <h2 style=" text-align: center; color: rgb(117, 155, 252);">Classes Details</h2>
+    <hr>
+    <form>
+        <label for="name">Class Number:</label>
+        <input type="text" id="class_no" name="name" placeholder="Enter class number" required>
+
+        <label for="class_name">class_name:</label>
+        <input type="text" id="class_name" name="class_name" placeholder="Enter class name" required>
+
+        <hr>
+        <button type="button" onclick="submitFormforclass()">Submit</button>
+    </form>
+</div>
+
+
+</body>
+</html>

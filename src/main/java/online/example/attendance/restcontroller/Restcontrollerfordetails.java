@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import online.example.attendance.Entity.StudentDetailsTable;
+import online.example.attendance.Entity.Attendancepage;
 import online.example.attendance.Entity.StudentClassDetailsTable;
 import online.example.attendance.Entity.TeacherDetailsTable;
 import online.example.attendance.Entity.schooltable;
+import online.example.attendance.repostery.AttnedanceRepo;
 import online.example.attendance.repostery.SchoolRepo;
 import online.example.attendance.repostery.StudentClassDetailsRepo;
 import online.example.attendance.repostery.TeacherDetailsRepo;
@@ -40,6 +42,8 @@ public class Restcontrollerfordetails {
     private TeacherDetailsRepo repo2;
     @Autowired
     private SchoolRepo repo3;
+    @Autowired
+    private AttnedanceRepo repo4;
 
     
 
@@ -65,6 +69,10 @@ public class Restcontrollerfordetails {
 
     @GetMapping("/school")
     public List<schooltable> getAlldetailofschool(){return repo3.findAll();}
+
+    @GetMapping("/attendance")
+    public List<Attendancepage> getAlldetailofattendancetable(){return repo4.findAll();}
+
 
 
 
@@ -156,9 +164,19 @@ public class Restcontrollerfordetails {
     }
 
 
+    @PostMapping("/add__details_in_attendance_table")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Attendancepage addAttendanceTableDetails(@RequestBody Attendancepage attendance)
+    {
+        int attendance_id= attendance.getattendance_id();
+        int student_id   = attendance.getstudent_id();
+        int teacher_id   = attendance.getteacher_id();
+        String date      = attendance.getdate();
+        boolean isPresent= attendance.getisPresent();
 
-
-
+        Attendancepage attendancetable = new Attendancepage(attendance_id,student_id,teacher_id,date,isPresent);
+        return repo4.save(attendancetable);
+    }
 
 
     @PutMapping("/student/{id}")
@@ -175,3 +193,8 @@ public class Restcontrollerfordetails {
             return ResponseEntity.noContent().build();
     }
 }
+
+
+
+
+
