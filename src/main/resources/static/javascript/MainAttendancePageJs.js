@@ -156,6 +156,8 @@ function handleCheckboxValues()
 }
  
 
+
+
 function AddDetailsInAttendanceTable(studentId,isChecked)
 {
     var student_id  =  studentId;

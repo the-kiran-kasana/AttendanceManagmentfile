@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Attendance Management System</title>
+    <script defer src="/javascript/attendance_js.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #6f716f;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            margin: 2em auto;
+            text-align: center;
+           
+        }
+
+        .login-btn, .register-btn {
+            display: inline-block;
+            color: #fff;
+            background-color: #4CAF50;
+            border-radius: 5px;
+        }
+
+        .login-section, .register-section {
+            padding: 3em;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        form {
+            text-align: left;
+            margin-top: 1em;
+        }
+
+        form label, form input {
+            display: block;
+            margin-bottom: 0.5em;
+        }
+
+        form input {
+            width: 100%;
+            padding: 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        form button {
+            background-color: #47ab4a;
+            color: #fff;
+            padding: 0.7em 1em;
+            border: none;
+            border-radius: 3px;
+            width:200px;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+        nav button{
+            float: right;
+            display: block;
+            background-color: #6f716f;
+            color:#fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            border: none;
+            font-size: medium;
+        }
+        #about{
+            float: left;
+            display: block;
+            background-color: #6f716f;
+            color:#fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            border: none;
+            font-size: medium;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Attendance Management System</h1>
+    </header>
+
+    <nav>
+        <button id="about" onclick="home()">Home</button>
+        <button id="about" onclick="aboutform()">About</button>
+        <button id="about" onclick="contact()">Contact</button>
+        <button id="registration" onclick="registrationform()">Register</button>
+    </nav>
+
+    <div class="container">
+        <h2>Explore the Attendance Management System</h2>
+        <p>Your one-stop solution for efficient attendance tracking.</p>
+
+        <div class="login-section">
+            <h3>Login</h3>
+            <form action="login_process.php" method="post">
+                <label for="school_name">School Name:</label>
+                <input type="text" id="schoolname" name="login-schoolname" required>
+
+                <label for="login-username">Username:</label>
+                <input type="text" id="username" name="login-username" required>
+
+                <label for="login-password">Password:</label>
+                <input type="password" id="password" name="login-password" required>
+
+                <button onclick="btnclickforlogin()">Submit</button>
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2023 Attendance Management System
+    </footer>
+</body>
+</html>

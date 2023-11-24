@@ -4,6 +4,8 @@
     <meta charset="UTF-8"xmlns:th="http://www.thymeleaf.org">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="/javascript/attendance_js.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <title>attendence</title> 
 </head>
 
@@ -101,7 +103,7 @@
 <nav>
     <a href="#"><button class="menu-btn" onclick="homepage()">HOME</button></a>
     <div class="dropdown">
-      <a href="#">Admin</a>
+      <a href="#"><button class="menu-btn" onclick="admin()">ADMIN</button></a>
       <div class="dropdown-content" id="admindetails"></div>
     </div>
     <a href="#"><button class="menu-btn" onclick="detail()">STUDENT_DETAILS</button></a>

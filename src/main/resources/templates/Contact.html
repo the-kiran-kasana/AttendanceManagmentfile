@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="/javascript/attendance_js.js"></script>
+    <title>Welcome to Attendance Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        nav {
+            background-color: #6f716f;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        nav button{
+            float: right;
+            display: block;
+            background-color: #6f716f;
+            color:#fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            border: none;
+            font-size: medium;
+        }
+        #about{
+            float: left;
+            display: block;
+            background-color: #6f716f;
+            color:#fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            border: none;
+            font-size: medium;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        form label, form input {
+            display: block;
+            margin-bottom: 0.5em;
+        }
+
+        form input {
+            width: 30%;
+            padding: 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+          #btn {
+            background-color:#ccc ;
+            color: #211f1f;
+            padding: 0.7em 1em;
+            border: none;
+            border-radius: 3px;
+            height: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <nav>
+        <button id="about" onclick="home()">Home</button>
+        <button id="about" onclick="aboutform()">About</button>
+        <button id="about" onclick="contact()">Contact</button>
+        <button id="registration" onclick="registrationform()">Register</button>
+    </nav>
+
+    
+        <h1 style="text-align: center;">Welcome to Attendance Management System</h1>
+
+        <h3 style="text-align: center;">Contact Us</h3>
+    <div class="contact-section" style="margin-left: 400px;">
+        <p>If you have any questions or need assistance, feel free to contact us:</p>
+        <ul>
+            <li>Email: info@attendancemanagement.com</li>
+            <li>Phone: +1 (555) 123-4567</li>
+            <li>Address: 123 Main Street, Cityville, State, 12345</li>
+        </ul>
+        <p>Alternatively, you can use the form below to send us a message:</p>
+
+        <form action="contact_process.php" method="post">
+            <label for="contact-name">Your Name:</label>
+            <input type="text" id="contact-name" name="contact-name" required>
+
+            <label for="contact-email">Your Email:</label>
+            <input type="email" id="contact-email" name="contact-email" required>
+
+            <label for="contact-message">Your Message:</label>
+            <textarea style="width: 250px;"id="contact-message" name="contact-message" rows="4" column="10" required></textarea>
+        </form>
+        <button id="btn" type="submit">Send Message</button>
+    </div>
+  
+
+    <footer>
+        &copy; 2023 Attendance Management System
+    </footer>
+</body>
+</html>

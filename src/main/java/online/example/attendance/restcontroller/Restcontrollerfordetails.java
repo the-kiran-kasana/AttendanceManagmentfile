@@ -158,8 +158,11 @@ public class Restcontrollerfordetails {
     {
         int school_id=school.getschool_id();
         String school_name=school.getschool_name();
-        String city_name=school.getcity_name();
-        schooltable schooltable = new schooltable(school_id,school_name,city_name);
+        String local_address=school.getlocal_address();
+        String district=school.getdistrict();
+        String principal=school.getprincipal();
+        String password=school.getpassword();
+        schooltable schooltable = new schooltable(school_id,school_name,local_address,district,principal,password);
         return repo3.save(schooltable);
     }
 

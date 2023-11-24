@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="/javascript/attendance_js.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <title>Attendance Management System - School Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 80px;
+            width: 150px;
+        }
+        button:hover {
+            background-color: #3c9541;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- School Registration Form -->
+    <form id="school-registration-form">
+        <img style="width: 100px; height: 50px; margin-left: 100px;"src="https://previews.123rf.com/images/cosastocker123/cosastocker1231403/cosastocker123140300012/26492784-school-building-in-black-and-white.jpg">
+       <hr style="color: #ece0e0;">
+
+        <label for="school-name">School Name:</label>
+        <input type="text" id="school-name" name="school-name" required>
+
+        <label for="local-address">Local Address:</label>
+        <input type="text" id="local-address" name="local-address" required>
+
+        <label for="district">District:</label>
+        <input type="text" id="district" name="district" required>
+
+        <label for="headmaster">Headmaster/Principal:</label>
+        <input type="text" id="headmaster" name="headmaster" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="button" onclick="registerschooldetails() ">Register</button>
+    </form>
+
+</body>
+</html>

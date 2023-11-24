@@ -20,20 +20,37 @@ public class schooltable {
     @Column(name="school_name", nullable = false)
     private String school_name;
 
-    @Column(name="city_name",nullable = false)
-    private String city_name;
+    @Column(name="local_address",nullable = false)
+    private String local_address;
+
+    @Column(name="district",nullable = false)
+    private String district;
+
+    @Column(name="principal",nullable = false)
+    private String principal;
+
+    @Column(name="password",nullable = false)
+    private String password;
+
 
     public schooltable()
     {
         
     }
 
-    public schooltable(int school_id,String school_name, String city_name)
+
+    public schooltable(int school_id,String school_name, String local_address,String district,String principal,String password)
     {
+
         this.school_id=school_id;
         this.school_name=school_name;
-        this.city_name=city_name;
+        this.local_address=local_address;
+        this.district=district;
+        this.principal=principal;
+        this.password=password;
     }
+
+
 
     public int getschool_id() {
         return school_id;
@@ -51,14 +68,47 @@ public class schooltable {
         this.school_name = school_name;
     }
 
-    public String getcity_name()
+    public String getlocal_address()
     {
-        return city_name;
+        return local_address;
     }
 
-    public void setclass_name(String city_name)
+    public void setlocal_address(String local_address)
     {
-        this.city_name=city_name;
+        this.local_address=local_address;
+    }
+    
+
+     public String getdistrict()
+    {
+        return district;
+    }
+
+    public void setdistrict(String district)
+    {
+        this.district=district;
+    }
+    
+
+     public String getprincipal()
+    {
+        return principal;
+    }
+
+    public void setprincipal(String principal)
+    {
+        this.principal=principal;
+    }
+    
+
+     public String getpassword()
+    {
+        return password;
+    }
+
+    public void setpassword(String password)
+    {
+        this.password=password;
     }
     
     @Override
@@ -67,7 +117,10 @@ public class schooltable {
         return "{"
                   +"class_id " + school_id +
                   "class_no " + school_name +
-                  ",class_name" + city_name +
+                  ",local_address" + local_address +
+                  ",district" + district +
+                  ",Principal "+ principal +
+                  ",password" + password +
                 "}";
     }
 

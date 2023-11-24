@@ -5,34 +5,61 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class controller {
-    
-    @GetMapping("/online_attendance")
+
+
+    @GetMapping("/Welcome_Page")
+    String welcompage()
+    {
+        return "WelcomePageForAttendance";
+    }
+
+    @GetMapping("/About_Page")
+    String aboutpage()
+    {
+        return "About";
+    }
+
+    @GetMapping("/Contact_Page")
+    String contactpage()
+    {
+        return "Contact";
+    }
+
+    @GetMapping("/School_Registration")
+    String schooolregirstion()
+    {
+        return "SchoolRegistrationForm";
+    }
+
+    @GetMapping("/Online_Attendance")
     String attendanceAPI()
     {
         return "HomePage";
     }
 
-    @GetMapping("/newpage")
-    String API()
-    {
-        return "newattendancepage";
-    }
-
-    @GetMapping("/addstudentdetails")
+   @GetMapping("/Add_Student_Details")
     String addstudent()
     {
         return "AddStudentDetails";
     }
 
-    @GetMapping("/addteacherdetails")
+    @GetMapping("/Add_Teacher_Details")
     String addteachers()
     {
         return "AddTeacherDetails";
     }
 
-    @GetMapping("/addclassdetails")
+    @GetMapping("/Add_Class_Details")
     String addclasses()
     {
         return "AddClassDetails";
     }
+
+    @GetMapping("/Main_Page")
+    String API()
+    {
+        return "MainAttendancePage";
+    }
+
+   
 }

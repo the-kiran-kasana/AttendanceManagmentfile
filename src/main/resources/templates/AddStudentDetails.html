@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <script defer src="/javascript/attendance_js.js"></script>
     <title>Student Details</title>
     <style>
         /* Add some basic styling for better appearance */
@@ -78,7 +78,9 @@
         <input type="text" id="motherName" name="motherName" placeholder="Enter mother's name" required>
 
         <label for="class">Class:</label>
-        <input type="text" id="class" name="class" placeholder="Enter student's class" required>
+        <select id="class" name="class" required>
+              <option value="school1">Select Class</option>
+        </select>
 
         <label for="rollNo">Roll Number:</label>
         <input type="text" id="rollNo" name="rollNo" placeholder="Enter student's roll number" required>
