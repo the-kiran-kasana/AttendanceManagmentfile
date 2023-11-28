@@ -2,7 +2,8 @@ package online.example.attendance.repostery;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import online.example.attendance.Entity.StudentDetailsTable;
+
+import online.example.attendance.Models.StudentDetailsTable;
 
  
 

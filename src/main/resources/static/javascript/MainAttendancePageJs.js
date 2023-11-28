@@ -41,24 +41,25 @@ function showTakeAttendance()
 
       // all school list in the section 
 
-        const xhp = new XMLHttpRequest();
-        xhp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                if (this.responseText != null) {
-                    var Response = JSON.parse(this.responseText);
-                    var buildDiv = "";
-                    for (var i in Response) {
-                        buildDiv += '<option value="' +Response[i].school_name + '">' + Response[i].school_name + '</option>'; }
+      document.getElementById("school").innerHTML=document.cookie;
+        // const xhp = new XMLHttpRequest();
+        // xhp.onreadystatechange = function () {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         if (this.responseText != null) {
+        //             var Response = JSON.parse(this.responseText);
+        //             // var buildDiv = "";
+        //             // for (var i in Response) {
+        //             //     buildDiv += '<option value="' +Response[i].school_name + '">' + Response[i].school_name + '</option>'; }
         
-                        document.getElementById("school").innerHTML = "<select name=\"dropdwonschool\" id=\"dropschool\"  style=\" border-top: 1px; font-size:13px; margin-left: 20px ;border-left: 1px; border-right: 1px; background-color: transparent;\">" +
-                        "<option value=\"classess\">Select School</option>" + buildDiv + "</select>";
-                }
-            }
-        };  
-        xhp.open('GET', "http://localhost:8080/school", true);
-        xhp.setRequestHeader("Accept", "application/json");
-        xhp.setRequestHeader("Content-Type", "application/json");
-        xhp.send();
+        //                 // document.getElementById("school").innerHTML = "<select name=\"dropdwonschool\" id=\"dropschool\"  style=\" border-top: 1px; font-size:13px; margin-left: 20px ;border-left: 1px; border-right: 1px; background-color: transparent;\">" +
+        //                 // "<option value=\"classess\">Select School</option>" + buildDiv + "</select>";
+        //         }
+        //     }
+        // };  
+        // xhp.open('GET', "http://localhost:8080/school", true);
+        // xhp.setRequestHeader("Accept", "application/json");
+        // xhp.setRequestHeader("Content-Type", "application/json");
+        // xhp.send();
 
         
         // show students details by the class
@@ -141,6 +142,8 @@ function takeattendance(student_id,studentRollNo, studentFullName, studentFather
 }
 
 
+
+
 document.getElementById('submitBtn').addEventListener('click', function () {
     handleCheckboxValues();
 });
@@ -158,23 +161,40 @@ function handleCheckboxValues()
 
 
 
-function AddDetailsInAttendanceTable(studentId,isChecked)
-{
-    var student_id  =  studentId;
-    var teacher_id  =  "";
-    var  date       =  joined;
-    var is_present  =  isChecked;
-    const user = {student_id,teacher_id,date,is_present};
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', "http://localhost:8080/add__details_in_attendance_table", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onreadystatechange = function () {
-    var response=this.responseText;
-    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        console.log(response);
-    }};
-    body=JSON.stringify(user)
-    xhr.send(body);
+const existingRecordsArray = [];
+function AddDetailsInAttendanceTable(studentId, isChecked) {
+    var student_id = studentId;
+    var teacher_id = "";
+    var date = joined;
+    var isPresent = isChecked;
+
+    // Check if a record with the same student_id, teacher_id, and date already exists
+    if (isRecordUnique(student_id, teacher_id, date)) {
+        const user = { student_id, teacher_id, date, isPresent };
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', "http://localhost:8080/add__details_in_attendance_table", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function () {
+            var response = this.responseText;
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                console.log(response);
+            }
+        };
+        const body = JSON.stringify(user);
+        xhr.send(body);
+    } else {
+        console.log('Record already exists. Not adding duplicate.');
+    }
+}  
+
+function isRecordUnique(student_id, teacher_id, date) {
+    const existingRecord = existingRecordsArray.find(record =>
+        record.student_id === student_id &&
+        record.teacher_id === teacher_id &&
+        record.date === date
+    );
+
+    return !existingRecord;
 }
 
 
@@ -182,43 +202,119 @@ function AddDetailsInAttendanceTable(studentId,isChecked)
 
 
 
-function  showCheckHistory()
+
+
+
+
+// function AddDetailsInAttendanceTable(studentId,isChecked)
+// {
+//     var student_id  =  studentId;
+//     var teacher_id  =  "";
+//     var  date       =  joined;
+//     var isPresent  =  isChecked;
+
+//     const user = {student_id,teacher_id,date,isPresent};
+//     const xhr = new XMLHttpRequest();
+//     xhr.open('POST', "http://localhost:8080/add__details_in_attendance_table", true);
+//     xhr.setRequestHeader('Content-Type', 'application/json');
+//     xhr.onreadystatechange = function () {
+//     var response=this.responseText;
+//     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+//         console.log(response);
+//     }};
+//     body=JSON.stringify(user)
+//     xhr.send(body);
+// }
+
+
+
+function showCheckHistory()
 {
-    const xhr = new XMLHttpRequest();
-    let AttendaceListString;   
-    xhr.onreadystatechange = function ()
-    {
-     if (this.readyState == 4 && this.status == 200)
-     {
-       if (this.responseText != null)
-       {
-          AttendaceListString = this.responseText;
-          var parseResponse = JSON.parse(AttendaceListString);
-          var buildTable = "<table border='1'>";
-          buildTable += "<tr><th>Date</th><th>Students_Id</th><th>Present / Absent</th></tr>";
-          for (let i in parseResponse)
-          {
-              buildTable += historyattendance(parseResponse[i].date,parseResponse[i].student_id,parseResponse[i].is_present);
-          }       
-          buildTable += "</table>";   
-          document.getElementById("studentListSection").innerHTML = buildTable;
-       }
-     }
+
+    //select option section code for date
+    document.getElementById("history").innerHTML="<section style=\"margin-bottom: 10px;\">"+
+    "<label for=\"DATE\">Date:</label>"+
+    "<select id=\"DATE\" name=\"class\" style=\"width: 20%;\">"+
+    "<option value=\"schDATE\">Select Date</option>"+
+    "</select>"+
+    "</section>";
+    
+    //unique date section code
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText != null) {
+                var parseResponse = JSON.parse(this.responseText);      
+                var uniqueDates = new Set();
+                for (var i in parseResponse) {
+                    uniqueDates.add(parseResponse[i].date);
+                }
+                var uniqueDatesArray = Array.from(uniqueDates);
+                var buildDivForClass = "";
+                for (var i in uniqueDatesArray) {
+                    buildDivForClass += '<option value="' + uniqueDatesArray[i] + '">' + uniqueDatesArray[i] + '</option>';
+                }
+                document.getElementById("DATE").innerHTML = "<select name=\"dropdwondate\" id=\"dropdate\"  style=\" border-top: 1px; font-size:13px; margin-left: 20px ;border-left: 1px; border-right: 1px; background-color: #ddd; width:250px;\">" +
+                    "<option value=\"classess\">Select Date</option>" + buildDivForClass + "</select>";
+            }
+        }
+    };  
+    xhttp.open('GET', "http://localhost:8080/attendance", true);
+    xhttp.setRequestHeader("Accept", "application/json");
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send();
+    
+
+
+
+
+        var selectedValue;
+        var selectElement = document.getElementById("DATE");
+        selectElement.addEventListener("change", function() {
+        selectedValue = selectElement.value;
+         
+
+            const  xhr = new XMLHttpRequest();
+            let attendanceList;   
+            xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText != null) {
+            attendanceList = JSON.parse(this.responseText);
+            let uniqueStudentIds = new Set();
+
+            var buildTable = "<table border='1'>";
+            buildTable += "<tr><th>Date</th><th>Students_Roll_No</th><th>Students_Name</th><th>Students_Father_Name</th><th>Present / Absent</th></tr>";
+            for (let i in attendanceList) {
+
+                        var attendance = attendanceList[i][0];  
+                        var studentDetails = attendanceList[i][1];  
+                          //if (!uniqueStudentIds.has(attendance.date)) {
+                         // uniqueStudentIds.add(attendance.date);
+                         if(selectedValue===attendance.date){
+                         buildTable += getvalue( attendance.date, attendance.isPresent, studentDetails.student_roll_no, studentDetails.student_full_name, studentDetails.student_father_name);
+                         }
+                       // }
+                    }
+            }
+
+            buildTable += "</table>"; 
+            document.getElementById("studentListSection").innerHTML = buildTable;
+        }
     };
-    xhr.open('GET', "http://localhost:8080/attendance", true);
-    xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send();
+xhr.open('GET', "http://localhost:8080/attendanceAndStudent", true);
+xhr.setRequestHeader("Accept", "application/json");
+xhr.send();
+})
 }
 
-
-function historyattendance(date,student_id, is_present) {
+//Student attendance history table
+function getvalue( date, isPresent, student_roll_no, student_full_name, student_father_name) {
     var row = "<tr>";
     row += "<td>" + date + "</td>";
-    row += "<td>" + student_id + "</td>";
-    row += "<td>" + is_present + "</td>";   
+    row += "<td>" + student_roll_no + "</td>";
+    row += "<td>" + student_full_name + "</td>"; 
+    row += "<td>" + student_father_name + "</td>"; 
+    row += "<td>" + (isPresent ? 'Present' : 'Absent') + "</td>";  // Assuming isPresent is a boolean 
     row += "</tr>";
     return row;
 }
-
-

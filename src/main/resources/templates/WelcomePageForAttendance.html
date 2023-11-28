@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Attendance Management System</title>
-    <script defer src="/javascript/attendance_js.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    <script defer th:src="@{/javascript/attendance_js.js}"></script>
+    
+</head>
     <style>
-        body {
+         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -116,18 +116,18 @@
             border: none;
             font-size: medium;
         }
+
     </style>
-</head>
 <body>
     <header>
         <h1>Welcome to Attendance Management System</h1>
     </header>
 
     <nav>
-        <button id="about" onclick="home()">Home</button>
-        <button id="about" onclick="aboutform()">About</button>
-        <button id="about" onclick="contact()">Contact</button>
-        <button id="registration" onclick="registrationform()">Register</button>
+        <button id="about" th:onclick="home()">Home</button>
+        <button id="about" th:onclick="aboutform()">About</button>
+        <button id="about" th:onclick="contact()">Contact</button>
+        <button id="registration" th:onclick="registrationform()">Register</button>
     </nav>
 
     <div class="container">
@@ -136,17 +136,14 @@
 
         <div class="login-section">
             <h3>Login</h3>
-            <form action="login_process.php" method="post">
-                <label for="school_name">School Name:</label>
-                <input type="text" id="schoolname" name="login-schoolname" required>
-
+            <form th:action="@{/login_process}" method="post">
                 <label for="login-username">Username:</label>
-                <input type="text" id="username" name="login-username" required>
+                <input type="text" id="username" name="login-username" th:required="required">
 
                 <label for="login-password">Password:</label>
-                <input type="password" id="password" name="login-password" required>
+                <input type="password" id="password" name="login-password" th:required="required">
 
-                <button onclick="btnclickforlogin()">Submit</button>
+                <button th:onclick="btnclickforlogin()">Submit</button>
             </form>
         </div>
 

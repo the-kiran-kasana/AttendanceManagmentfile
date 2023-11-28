@@ -1,24 +1,47 @@
-package online.example.attendance.requestbody;
+package online.example.attendance.Models;
 
-public class SchoolRequestBody {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="school_table")
+public class schooltable {
     
-      
-    private String school_id; 
+ 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="school_id", nullable = false)
+    private int school_id;
+
+    @Column(name="school_name", nullable = false)
     private String school_name;
+
+    @Column(name="local_address",nullable = false)
     private String local_address;
+
+    @Column(name="district",nullable = false)
     private String district;
+
+    @Column(name="principal",nullable = false)
     private String principal;
+
+    @Column(name="password",nullable = false)
     private String password;
 
 
-    public SchoolRequestBody()
+    public schooltable()
     {
         
     }
 
 
-    public SchoolRequestBody(String school_id,String school_name, String local_address,String district,String principal,String password)
+    public schooltable(int school_id,String school_name, String local_address,String district,String principal,String password)
     {
+
         this.school_id=school_id;
         this.school_name=school_name;
         this.local_address=local_address;
@@ -29,11 +52,11 @@ public class SchoolRequestBody {
 
 
 
-    public String getschool_id() {
+    public int getschool_id() {
         return school_id;
     }
  
-    public void setschool_id(String school_id) {
+    public void setschool_id(int school_id) {
         this.school_id = school_id;
     }
 

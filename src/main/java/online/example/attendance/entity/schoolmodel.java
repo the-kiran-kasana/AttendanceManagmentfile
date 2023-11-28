@@ -1,9 +1,9 @@
-package online.example.attendance.requestbody;
+package online.example.attendance.entity;
 
-public class SchoolRequestBody {
-    
+
+public class schoolmodel {
       
-    private String school_id; 
+    private int school_id; 
     private String school_name;
     private String local_address;
     private String district;
@@ -11,13 +11,13 @@ public class SchoolRequestBody {
     private String password;
 
 
-    public SchoolRequestBody()
+    public schoolmodel()
     {
         
     }
 
 
-    public SchoolRequestBody(String school_id,String school_name, String local_address,String district,String principal,String password)
+    public schoolmodel(int school_id,String school_name, String local_address,String district,String principal,String password)
     {
         this.school_id=school_id;
         this.school_name=school_name;
@@ -29,11 +29,11 @@ public class SchoolRequestBody {
 
 
 
-    public String getschool_id() {
+    public int getschool_id() {
         return school_id;
     }
  
-    public void setschool_id(String school_id) {
+    public void setschool_id(int school_id) {
         this.school_id = school_id;
     }
 

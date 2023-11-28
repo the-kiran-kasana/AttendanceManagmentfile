@@ -2,7 +2,6 @@
 
 
 
-// for attendance page
 function attendance_page()
 {
   location.replace("http://localhost:8080/Main_Page");
@@ -33,34 +32,6 @@ function contact()
 }
 
 
-// location.replace("http://localhost:8080/Online_Attendance");
-// var school_name =document.getElementById('schoolname').value;
-    // var principal   = document.getElementById('username').value;
-    // var password    = document.getElementById('password').value;
-    // if(school_name==="" || principal==="" || password==="")
-    // {
-    //   alert("please fill the form");
-    // }
-
-
-//  function btnclickforlogin()
-//  {
-//         const xhr = new XMLHttpRequest();
-//         xhr.onreadystatechange = function () {
-//           if (this.readyState == 4 && this.status == 200) {
-//             if (this.responseText != null) {
-//                   var response=this.responseText;
-//                   console.log(response);
-//                   var parseResponse = JSON.parse(response);
-//                 }
-//               }};
-//         xhr.open('GET', "http://localhost:8080/school", true);
-//         xhr.setRequestHeader("Accept", "application/json");
-//         xhr.setRequestHeader("Content-Type", "application/json");
-//         xhr.send();
-//     }
-
-
 
 function admin(){
 // for admin of Attendance page
@@ -71,7 +42,7 @@ document.getElementById("admindetails").innerHTML= "<h5 style=\"color:rgb(117, 1
 
 
 
-//add student details
+// //add student details
 
 function addstudent()
 {
@@ -107,7 +78,7 @@ function submitForm() {
      xhr.send(body);
      }
  
-}
+ }
 
 
 
@@ -237,10 +208,10 @@ function getDiv(student_id,student_roll_no,class_id,student_name,student_father_
 
 
 
+ 
 
 
-
-const xhttp = new XMLHttpRequest();
+        const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 if (this.responseText != null) {
@@ -258,16 +229,6 @@ const xhttp = new XMLHttpRequest();
         xhttp.setRequestHeader("Accept", "application/json");
         xhttp.setRequestHeader("Content-Type", "application/json");
         xhttp.send(); 
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -303,47 +264,76 @@ function registerschooldetails() {
 
 
 
-// function btnclickforlogin()
-// {
-//   import axios from 'axios';
-//   const axios = require("axios");
-
-//   axios.get('http://localhost:8080/school').then(resp => {
-  
-//       console.log(resp.data);
-//   });
-// }
-  
-
-  // const xhr = new XMLHttpRequest();
-  // xhr.onreadystatechange = function () {
-  //             if (this.readyState == 4 && this.status == 200) {
-  //               if (this.responseText != null) {
-  //                     var response=this.responseText;
-  //                     console.log(response);
-  //               }
-  //             }
-  //           };
-  //           xhr.open('GET', "http://localhost:8080/school", true);
-  //       xhr.setRequestHeader("Accept", "application/json");
-  //       xhr.setRequestHeader("Content-Type", "application/json");
-  //       xhr.send();
 
 
 
+function btnclickforlogin() {
 
- import axios from 'axios';
+  var principal = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+  const user = { principal, password };
 
-axios.get('http://localhost:8080/school', {
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
-})
-  .then(response => {
-    console.log('Response:', response.data);
-    // You can further process the response data here
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+ 
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', "http://localhost:8080/login_controller", true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+              var response = xhr.responseText;
+              try {
+                  var parseResponse = JSON.parse(response);
+
+                  if (parseResponse.length > 0) {
+                      var school_name = parseResponse[0].school_name;
+                      var Username = parseResponse[0].principal;
+                      var pass = parseResponse[0].password;
+
+                      // SET cookie
+                      document.cookie = "school_name=" + encodeURIComponent(school_name);
+
+                      if (principal === Username && password === pass) {
+                          console.log("ans5");
+                          location.replace("http://localhost:8080/Online_Attendance");
+                      } else {
+                          alert("Login failed");
+                      }
+                  } else {
+                      alert("User not found");
+                  }
+              } catch (error) {
+                  console.error("Error parsing JSON response:", error);
+              }
+          } else {
+              alert("Error: " + xhr.status);
+          }
+      }
+  };
+
+  var body = JSON.stringify(user);
+  xhr.send(body);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

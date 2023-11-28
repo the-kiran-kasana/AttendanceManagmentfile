@@ -12,18 +12,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import online.example.attendance.Entity.StudentDetailsTable;
-import online.example.attendance.Entity.Attendancepage;
-import online.example.attendance.Entity.StudentClassDetailsTable;
-import online.example.attendance.Entity.TeacherDetailsTable;
-import online.example.attendance.Entity.schooltable;
+import org.springframework.jdbc.core.JdbcTemplate;
+import online.example.attendance.Models.Attendancepage;
+import online.example.attendance.Models.StudentClassDetailsTable;
+import online.example.attendance.Models.StudentDetailsTable;
+import online.example.attendance.Models.TeacherDetailsTable;
+import online.example.attendance.Models.schooltable;
+import online.example.attendance.entity.schoolmodel;
 import online.example.attendance.repostery.AttnedanceRepo;
 import online.example.attendance.repostery.SchoolRepo;
 import online.example.attendance.repostery.StudentClassDetailsRepo;
 import online.example.attendance.repostery.TeacherDetailsRepo;
+import online.example.attendance.requestbody.SchoolRequestBody;
 import online.example.attendance.repostery.StudentDetailsRepo;
-
-
+import online.example.attendance.repostery.AttendanceRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,19 +47,27 @@ public class Restcontrollerfordetails {
     private SchoolRepo repo3;
     @Autowired
     private AttnedanceRepo repo4;
+    @Autowired
+    private AttendanceRepository attendanceRepository;
 
-    
 
 
+    private final JdbcTemplate jdbcTemplate;
+
+    public Restcontrollerfordetails(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+
+    @GetMapping("/attendanceAndStudent")
+    public List<Object[]> getAttendanceAndStudentDetails() {
+        return attendanceRepository.getAttendanceAndStudentDetails();
+    }
 
 
     @GetMapping("/classrowlength")
     public long list() {return repo1.count();}
     
-    
-
-
-
 
     @GetMapping("/student")
     public List<StudentDetailsTable> getAlldetailofstudent(){return repo.findAll();}
@@ -73,6 +84,7 @@ public class Restcontrollerfordetails {
     @GetMapping("/attendance")
     public List<Attendancepage> getAlldetailofattendancetable(){return repo4.findAll();}
 
+    
 
 
 
@@ -181,7 +193,6 @@ public class Restcontrollerfordetails {
         return repo4.save(attendancetable);
     }
 
-
     @PutMapping("/student/{id}")
     public ResponseEntity<Object> updateStudent(@RequestBody StudentDetailsTable student,@PathVariable int id)
     {
@@ -195,9 +206,28 @@ public class Restcontrollerfordetails {
 
             return ResponseEntity.noContent().build();
     }
-}
 
 
+    @PostMapping("/login_controller")
+    public  List<schoolmodel> forid(@RequestBody SchoolRequestBody data)
+     {
+          String username=data.getprincipal();
+          String password=data.getpassword();
+          List<schoolmodel> datafromdb = new ArrayList<>();
+          String query="select *from school_table where principal= '"+username+"' and password= '"+password+"';";
+          jdbcTemplate.execute(query); 
+          jdbcTemplate.query(query,rs ->{   
+          schoolmodel user1 = new schoolmodel();
+          user1.setschool_name(rs.getString("school_name"));
+          user1.setprincipal(rs.getString("principal"));
+          user1.setpassword(rs.getString("password"));
+          datafromdb.add(user1);
+          });
+          System.out.println(datafromdb);
+          System.out.println(datafromdb.size());
 
+          return datafromdb;  
+      }
+    
 
-
+    }
