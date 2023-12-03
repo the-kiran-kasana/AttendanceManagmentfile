@@ -271,6 +271,7 @@ function btnclickforlogin() {
 
   var principal = document.getElementById("username").value;
   var password = document.getElementById("password").value;
+  console.log(principal ,password);
   const user = { principal, password };
 
  

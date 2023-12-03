@@ -211,6 +211,9 @@ public class Restcontrollerfordetails {
     @PostMapping("/login_controller")
     public  List<schoolmodel> forid(@RequestBody SchoolRequestBody data)
      {
+          System.out.println(data.getprincipal());
+          System.out.println(data.getpassword());
+
           String username=data.getprincipal();
           String password=data.getpassword();
           List<schoolmodel> datafromdb = new ArrayList<>();
