@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Attendance Management System</title>
     <script defer th:src="@{/javascript/attendance_js.js}"></script>
+    <script src="node_modules/js-cookie/src/js.cookie.min.js"></script>
+
+
     
 </head>
     <style>
@@ -50,10 +53,10 @@
         }
 
         .login-section, .register-section {
-            padding: 3em;
+            padding: 2em;
             background-color: #fff;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
             display: inline-block;
         }
 
@@ -62,29 +65,29 @@
             color: #fff;
             text-align: center;
             padding: 1em;
-            position: fixed;
+            /* position: fixed; */
             bottom: 0;
             width: 100%;
         }
 
-        form {
+        .loginform {
             text-align: left;
             margin-top: 1em;
         }
 
-        form label, form input {
+        .loginform label,.loginform input {
             display: block;
             margin-bottom: 0.5em;
         }
 
-        form input {
+        .loginform input {
             width: 100%;
             padding: 0.5em;
             border: 1px solid #ccc;
             border-radius: 3px;
         }
 
-        form button {
+        #login {
             background-color: #47ab4a;
             color: #fff;
             padding: 0.7em 1em;
@@ -116,6 +119,11 @@
             border: none;
             font-size: medium;
         }
+        #signup{
+            color: rgb(111, 111, 227);
+             border: none;
+             background-color: transparent;
+        }
 
     </style>
 <body>
@@ -128,6 +136,7 @@
         <button id="about" th:onclick="aboutform()">About</button>
         <button id="about" th:onclick="contact()">Contact</button>
         <button id="registration" th:onclick="registrationform()">Register</button>
+        <button class="btn" id="signin" th:onclick="btnclickforsignin()">Sign in</button> 
     </nav>
 
     <div class="container">
@@ -136,16 +145,22 @@
 
         <div class="login-section">
             <h3>Login</h3>
-            <form th:action="@{/login_process}" method="post">
+            <div class="loginform">
                 <label for="login-username">Username:</label>
                 <input type="text" id="username" name="login-username" th:required="required">
 
                 <label for="login-password">Password:</label>
                 <input type="password" id="password" name="login-password" th:required="required">
 
-                <button th:onclick="btnclickforlogin()">Submit</button>
-            </form>
+                <button id="login" th:onclick="btnclickforlogin()">Submit</button>
+                <h6 style="margin-left: 30px;color:#848584">
+                     If you are not a member ? 
+                    <button id="signup" th:onclick="btnclickforSignup()"><h5><u>Signup</u></h5></button> 
+                </h6>
+            </div>
         </div>
+
+
 
     </div>
 

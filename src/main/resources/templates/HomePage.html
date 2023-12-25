@@ -4,6 +4,8 @@
     <meta charset="UTF-8"xmlns:th="http://www.thymeleaf.org">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="/javascript/attendance_js.js"></script>
+    <script src="node_modules/js-cookie/src/js.cookie.min.js"></script>
+
  
     <title>attendence</title> 
 </head>
@@ -15,6 +17,34 @@
       padding: 0;
       background-color: #f4f4f4;
   }
+
+
+
+.notification {
+  background-color: #aca9a9;
+  color: rgb(35, 33, 33);
+  text-decoration: none;
+  padding: 5px 10px;
+  position: relative;
+  /* display: inline-block; */
+  border-radius: 2px;
+  float: right;
+  margin-right: 20px;
+}
+
+.notification:hover {
+  background: rgb(97, 96, 96);
+}
+
+.notification .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 1px 2px;
+  border-radius: 50%;
+  background-color: rgb(241, 47, 47);
+  color: white;
+}
 
   header {
       background-color: #333;
@@ -56,7 +86,7 @@
       text-align: center;
       padding: 1px;
       /* position: fixed; */
-      margin-top: 270px;
+      margin-top:320px;
       bottom: 0;
       width: 100%;
   }
@@ -105,25 +135,35 @@
       <a href="#"><button class="menu-btn" onclick="admin()">ADMIN</button></a>
       <div class="dropdown-content" id="admindetails"></div>
     </div>
-    <a href="#"><button class="menu-btn" onclick="detail()">STUDENT_DETAILS</button></a>
+    <a href="#"><button class="menu-btn" onclick="detail()">STUDENT_DETAILS</button></div></a>
     <a href="#"><button class="menu-btn" onclick="attendance_page()">ATTENDANCE</button></a>
 
     <div class="dropdown">
-      <a href="#">Settings</a>
+      <a href="#">Add Details</a>
       <div class="dropdown-content">   
         <button class="btn" onclick="addstudent()"> Add Students</button>
         <button class="btn" onclick="addteachers()"> Add Teachers</button>
-        <button class="btn" onclick="addclasses()"> Add Classes</button>         
+        <button class="btn" onclick="addclasses()"> Add Classes</button>        
+        
       </div>
     </div>
 
+    <div  class="notification"> 
+      <span>Request</span>
+      <span class="badge" id="req"></span>
+    </div>
+    
+
 </nav>
+
+<div id="sectionclassstudentdetail"></div>
 
 <section id="fontpage">
   <h3>Welcome to the Attendance Management System</h3>
   <p>This system allows you to efficiently manage and track attendance for various events, classes, or activities.</p>
   <p>Choose an option from the navigation menu above to get started.</p>
 </section>
+
 
 
 
