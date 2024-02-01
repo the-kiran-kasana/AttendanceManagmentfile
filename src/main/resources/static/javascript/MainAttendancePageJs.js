@@ -88,27 +88,17 @@ document.getElementById("school").innerHTML = school_name;
 
 
 // take attendance
-function showTakeAttendance()
-{ 
+    function showTakeAttendance()
+    { 
 
-
-
-
-    document.getElementById('date').style.display = 'block';
-    document.getElementById('school').style.display = 'block';
-    document.getElementById('class').style.display = 'block';
-    document.getElementById('submitBtn').style.display = 'block';
-    document.getElementById('history').style.display = 'none';
-    document.getElementById('HistoryOfClass').style.display = 'none';
-    document.getElementById('displaysection').style.display = 'block';
-    document.getElementById('searchstudent').style.display = 'none';
-
-
-    
-
-    
-
-
+        document.getElementById('date').style.display = 'block';
+        document.getElementById('school').style.display = 'block';
+        document.getElementById('class').style.display = 'block';
+        document.getElementById('submitBtn').style.display = 'block';
+        document.getElementById('history').style.display = 'none';
+        document.getElementById('HistoryOfClass').style.display = 'none';
+        document.getElementById('displaysection').style.display = 'block';
+        document.getElementById('searchstudent').style.display = 'none';
 
 
         // all class list in section
@@ -170,9 +160,7 @@ function showTakeAttendance()
 
 
 function showstudentlistbytheclasss(id)
-{
-
-    
+{ 
         const xhr = new XMLHttpRequest();
         let bookListString;   
         xhr.onreadystatechange = function ()
@@ -415,7 +403,6 @@ function showCheckHistory()
              {     
                 if(parse[i].class_name==selectClass)
                 {
-                  console.log("student according to date and class   " +  id,selectedValue);
                   var id=parse[i].class_id;  
                   HistoryAccordingToClassAndDate(id,selectedValue);
                 }
@@ -456,7 +443,7 @@ function HistoryAccordingToClassAndDate(id,selectedValue)
 
   
  var buildTable = "<table border='1'>";
-     buildTable += "<tr><th>Date</th><th>Students_Roll_No</th><th>Students_Name</th><th>Students_Father_Name</th><th>Present / Absent</th></tr>";
+     buildTable += "<tr><th>Date</th><th>Students_Roll_No</th><th>Students_Name</th><th>Students_Father_Name</th><th>Present / Absent</th><th>Average(%)</th></tr>";
  for (let i in attendanceList) {
 
     console.log("student according to date and class   " +  id,selectedValue);
@@ -466,20 +453,20 @@ function HistoryAccordingToClassAndDate(id,selectedValue)
         var studentDetails = attendanceList[i][1];  
           //if (!uniqueStudentIds.has(attendance.date)) {
          // uniqueStudentIds.add(attendance.date);
-         if(selectedValue==attendance.date ){
-         
-            if(id==studentDetails.class_id)
-            {
-              
-              buildTable += getvalue( attendance.date, attendance.isPresent, studentDetails.student_roll_no, studentDetails.student_full_name, studentDetails.student_father_name);
+         if (selectedValue == attendance.date) {
+
+            if (id == studentDetails.class_id) {
+        
+                    buildTable += getvalue(attendance.date, attendance.isPresent, studentDetails.student_roll_no, studentDetails.student_full_name, studentDetails.student_father_name);
             }
         }
-    }
-}
+        }
+     }
+
 buildTable += "</table>"; 
 document.getElementById("studentListSection").innerHTML = buildTable;
 }
-};
+ };
 
 xhr.open('GET', "http://localhost:8080/attendanceAndStudent", true);
 xhr.setRequestHeader("Accept", "application/json");
@@ -488,17 +475,17 @@ xhr.send();
 
 
 //Student attendance history table
-function getvalue( date, isPresent, student_roll_no, student_full_name, student_father_name) {
+function getvalue( date, isPresent, student_roll_no, student_full_name, student_father_name,Average) {
     var row = "<tr>";
     row += "<td>" + date + "</td>";
     row += "<td>" + student_roll_no + "</td>";
     row += "<td>" + student_full_name + "</td>"; 
     row += "<td>" + student_father_name + "</td>"; 
-    row += "<td>" + (isPresent ? 'Present' : 'Absent') + "</td>";  // Assuming isPresent is a boolean 
+    row += "<td>" + (isPresent ? 'Present' : 'Absent') + "</td>";
+    row += "<td>" + Average + "</td>";  // Assuming isPresent is a boolean 
     row += "</tr>";
     return row;
 }
-
 
 
 
@@ -669,250 +656,91 @@ function getvalue1( date, isPresent, student_roll_no, student_full_name, student
 }
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-function myFunction1() {
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("studentListSection");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[2]; // Index 2 is for the Students_Name column
-        if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
+
+
+function searchStudentAttendanceByClass()
+{
+
+    document.getElementById('date').style.display = 'none';
+    document.getElementById('school').style.display = 'none';
+    document.getElementById('class').style.display = 'none';
+    document.getElementById('submitBtn').style.display = 'none';
+    // Show or perform logic for sections related to Check History
+    document.getElementById('history').style.display = 'none';
+    document.getElementById('HistoryOfClass').style.display = 'none';
+    document.getElementById('displaysection').style.display = 'none';
+    document.getElementById('searchstudent').style.display = 'block';
+
+
+        document.getElementById('searchstudent').innerHTML = "Search : " +
+        "<input style=\"width:200px; height:25px;\" type=\"text\" id=\"myInput\" onkeyup=\"myFunction()\" placeholder=\"Search for names..\" title=\"Type in a name\">" +
+        "<div style=\"height:10px;\"></div>";
+    
+    const xhr = new XMLHttpRequest();
+    let attendanceList;
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText != null) {
+                attendanceList = JSON.parse(this.responseText);
+                let uniqueStudentIds = new Set();
+                
+                var buildTable = "<table border='1' id=\"myUL\">";
+                buildTable += "<tr><th>Date</th><th>Students_Roll_No</th><th>Students_Name</th><th>Students_Father_Name</th><th>Present / Absent</th></tr>";
+                for (let i in attendanceList) {
+                    var attendance = attendanceList[i][0];
+                    var studentDetails = attendanceList[i][1];
+                    if (studentDetails.school_id == School_Id){
+                            buildTable += getvalue67(attendance.date, attendance.isPresent, studentDetails.student_roll_no, studentDetails.student_full_name, studentDetails.student_father_name);
+                
+                        }
+                    }
+                buildTable += "</table>";
+                document.getElementById("studentListSection").innerHTML = buildTable;
+            }
+        }
+    };
+    
+    xhr.open('GET', "http://localhost:8080/attendanceAndStudent", true);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.send();
+
+}
+    
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myUL");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2]; // Index 2 is for the Students_Name column
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
             }
         }
     }
-}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function getAttendanceByClass() {
-//     var selectedClass = document.getElementById("dropclass").value;
-//     // Perform logic to fetch attendance history for the selected class
-//     // Use selectedClass in your API request
-//     // Update the display based on the fetched data
-//     // Example:
-//      fetchAttendanceHistory(selectedClass);
-//     // displayAttendanceTable();
-// }
-
-// // Function to fetch attendance history based on the selected class
-// function fetchAttendanceHistory(selectedClass) {
-//     // Perform XMLHttpRequest or fetch API request to fetch attendance data based on the selected class
-//     // Update the 'attendanceList' variable
-//     // Example:
-//     const xhrAttendance = new XMLHttpRequest();
-//     xhrAttendance.onreadystatechange = function () {
-//         if (this.readyState == 4 && this.status == 200) {
-//             if (this.responseText != null) {
-//                 attendanceList = JSON.parse(this.responseText);
-//                 displayAttendanceTable();
-//             }
-//         }
-//     };
-//     xhrAttendance.open('GET', "http://localhost:8080/classes"+ selectedClass, true);
-//     xhrAttendance.setRequestHeader("Accept", "application/json");
-//     xhrAttendance.send();
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//  function searchaccordingtoclass()
-//  {
-//      document.getElementById('searchstudent').innerHTML = "Search : " +
-//     "<input style=\"width:200px; height:25px;\" type=\"text\" id=\"myInput\" onkeyup=\"myFunction1()\" placeholder=\"Search for names..\" title=\"Type in a name\">" +
-//     "<div style=\"height:10px;\"></div>";
-
-
-//     document.getElementById("HistoryOfClass").innerHTML = "<section style=\"margin-bottom: 10px;\">" +
-//     "<label for=\"DATE\">Class : </label>" +
-//     "<select id=\"HClasses\" name=\"class\" style=\"width: 20%;\">" +
-//     "<option value=\"schDATE\">Select Class</option>" +
-//     "</select>" +
-//     "</section>";
-
-
-//     const xhr = new XMLHttpRequest();
-//     let attendanceList;
-//     xhr.onreadystatechange = function () {
-//     if (this.readyState == 4 && this.status == 200) {
-//         if (this.responseText != null) {
-//             attendanceList = JSON.parse(this.responseText);
-//             var buildTable = "<table border='1' id=\"myUL\">";
-//             buildTable += "<tr><th>Date</th><th>Students_Roll_No</th><th>Students_Name</th><th>Students_Father_Name</th><th>Present / Absent</th></tr>";
-//             for (let i in attendanceList) {
-//                 var attendance = attendanceList[i][0];
-//                 var studentDetails = attendanceList[i][1];
-//                 if (School_Id == studentDetails.school_id) {
-//                     buildTable += getvalue1(attendance.date, attendance.isPresent, studentDetails.student_roll_no, studentDetails.student_full_name, studentDetails.student_father_name);
-//                 }
-//             }
-//             buildTable += "</table>";
-//             document.getElementById("studentListSection").innerHTML = buildTable;
-            
-//         }
-//     }};
-//     xhr.open('GET', "http://localhost:8080/attendanceAndStudent", true);
-//     xhr.setRequestHeader("Accept", "application/json");
-//     xhr.send();
-
-
-
-
-
-//     const xht = new XMLHttpRequest();
-//     xht.onreadystatechange = function () {
-//         if (this.readyState == 4 && this.status == 200) {
-//             if (this.responseText != null) {
-//                 var parseResponse = JSON.parse(this.responseText);
-//                 var buildDivForClass = "";
-//                 for (var i in parseResponse) {
-//                     if (parseResponse[i].school_id == School_Id) {
-//                         buildDivForClass += '<option value="' + parseResponse[i].class_name + '">' + parseResponse[i].class_name + '</option>';
-//                     }
-//                 }
-//                 document.getElementById("HClasses").innerHTML =
-//                     "<select name=\"dropdwonclass\" id=\"dropclass\"  style=\"\" onchange=\"getAttendanceHistory()\">" +
-//                     "<option value=\"classess\">Select Class</option>" + buildDivForClass + "</select>";
-//             }
-//         }
-//     };
-
-//     xht.open('GET', "http://localhost:8080/classes", true);
-//     xht.setRequestHeader("Accept", "application/json");
-//     xht.setRequestHeader("Content-Type", "application/json");
-//     xht.send();
-//  }
-
-
-
-
-
-
-
-
-// function myFunction1() {
-//     var input, filter, table, tr, td, i, txtValue;
-//     input = document.getElementById("myInput");
-//     filter = input.value.toUpperCase();
-//     table = document.getElementById("myUL");
-//     tr = table.getElementsByTagName("tr");
-//     for (i = 0; i < tr.length; i++) {
-//         td = tr[i].getElementsByTagName("td")[2]; // Index 2 is for the Students_Name column
-//         if (td) {
-//             txtValue = td.textContent || td.innerText;
-//             if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//                 tr[i].style.display = "";
-//             } else {
-//                 tr[i].style.display = "none";
-//             }
-//         }
-//     }
-// }
-
-
-
-// function getAttendanceHistory() {
-//     var selectedClass = document.getElementById("dropclass").value;
-//     // Perform logic to fetch attendance history for the selected class
-//     // Use selectedClass in your API request
-//     // Update the display based on the fetched data
-//     // Example:
-//     // fetchAttendanceHistory(selectedClass);
-//     // displayAttendanceTable();
-// }
-
-
-
-
-
-// // Function to fetch attendance history based on the selected class
-// function fetchAttendanceHistory(selectedClass) {
-//     // Perform XMLHttpRequest or fetch API request to fetch attendance data based on the selected class
-//     // Update the 'attendanceList' variable
-//     // Example:
-//     // const xhrAttendance = new XMLHttpRequest();
-//     // xhrAttendance.onreadystatechange = function () {
-//     //     if (this.readyState == 4 && this.status == 200) {
-//     //         if (this.responseText != null) {
-//     //             attendanceList = JSON.parse(this.responseText);
-//     //             displayAttendanceTable();
-//     //         }
-//     //     }
-//     // };
-//     // xhrAttendance.open('GET', "your_attendance_endpoint_here?class=" + selectedClass, true);
-//     // xhrAttendance.setRequestHeader("Accept", "application/json");
-//     // xhrAttendance.send();
-// }
-
-
-
-
-
-
-
-
-
-      // all school list in the section 
-
-        // const xhp = new XMLHttpRequest();
-        // xhp.onreadystatechange = function () {
-        //     if (this.readyState == 4 && this.status == 200) {
-        //         if (this.responseText != null) {
-        //             var Response = JSON.parse(this.responseText);
-        //             // var buildDiv = "";
-        //             // for (var i in Response) {
-        //             //     buildDiv += '<option value="' +Response[i].school_name + '">' + Response[i].school_name + '</option>'; }
-        
-        //                 // document.getElementById("school").innerHTML = "<select name=\"dropdwonschool\" id=\"dropschool\"  style=\" border-top: 1px; font-size:13px; margin-left: 20px ;border-left: 1px; border-right: 1px; background-color: transparent;\">" +
-        //                 // "<option value=\"classess\">Select School</option>" + buildDiv + "</select>";
-        //         }
-        //     }
-        // };  
-        // xhp.open('GET', "http://localhost:8080/school", true);
-        // xhp.setRequestHeader("Accept", "application/json");
-        // xhp.setRequestHeader("Content-Type", "application/json");
-        // xhp.send();
+    // Student attendance history table
+    function getvalue67(date, isPresent, student_roll_no, student_full_name, student_father_name) {
+        var row = "<tr>";
+        row += "<td>" + date + "</td>";
+        row += "<td>" + student_roll_no + "</td>";
+        row += "<td>" + student_full_name + "</td>";
+        row += "<td>" + student_father_name + "</td>";
+        row += "<td>" + (isPresent ? 'Present' : 'Absent') + "</td>"; // Assuming isPresent is a boolean
+        row += "</tr>";
+        return row;
+    }
+    
+
+    

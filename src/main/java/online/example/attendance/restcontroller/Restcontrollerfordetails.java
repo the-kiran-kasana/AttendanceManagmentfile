@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,14 +18,12 @@ import online.example.attendance.Models.StudentDetailsTable;
 import online.example.attendance.Models.TeacherDetailsTable;
 import online.example.attendance.Models.UserTable;
 import online.example.attendance.Models.schooltable;
-import online.example.attendance.entity.schoolmodel;
 import online.example.attendance.entity.usermodel;
 import online.example.attendance.repostery.AttnedanceRepo;
 import online.example.attendance.repostery.SchoolRepo;
 import online.example.attendance.repostery.StudentClassDetailsRepo;
 import online.example.attendance.repostery.TeacherDetailsRepo;
 import online.example.attendance.repostery.UserRepository;
-import online.example.attendance.requestbody.SchoolRequestBody;
 import online.example.attendance.requestbody.UserRequestBoby;
 import online.example.attendance.repostery.StudentDetailsRepo;
 import online.example.attendance.repostery.AttendanceRepository;
@@ -224,6 +220,8 @@ public class Restcontrollerfordetails {
         return repo3.save(schooltable);
     }
 
+    
+
     @PostMapping("/add__details_in_attendance_table")
     @ResponseStatus(HttpStatus.CREATED)
     public Attendancepage addAttendanceTableDetails(@RequestBody Attendancepage attendance) {
@@ -236,6 +234,8 @@ public class Restcontrollerfordetails {
         Attendancepage attendancetable = new Attendancepage(attendance_id, student_id, teacher_id, date, isPresent);
         return repo4.save(attendancetable);
     }
+
+
 
     @PutMapping("/student/{id}")
     public ResponseEntity<Object> updateStudent(@RequestBody StudentDetailsTable student, @PathVariable int id) {

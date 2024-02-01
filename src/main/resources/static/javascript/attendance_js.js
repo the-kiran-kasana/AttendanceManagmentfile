@@ -183,12 +183,14 @@ function submitFormForSignup() {
 
 function isValidUsername(username) {
   // Validate the username (customize this according to your requirements)
-  const usernameRegex = /^[a-zA-Z0-9.-#]{3,}$/;
+  const usernameRegex = /^[a-zA-Z0-9]{3,}$/;
   return usernameRegex.test(username);
 }
 
 
 
+let text = "Mr. Blue has a blue house";
+let position = text.search("Blue");
 
 
 

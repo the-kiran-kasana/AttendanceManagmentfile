@@ -8,6 +8,7 @@ public class AttendanceModel {
     int teacher_id;
     Date date;
     boolean isPresent;
+    
 
     public AttendanceModel() {
 
@@ -19,6 +20,8 @@ public class AttendanceModel {
         this.teacher_id = teacher_id;
         this.date = date;
         this.isPresent = isPresent;
+        
+
     }
 
     public int getattendance_id() {
@@ -61,11 +64,13 @@ public class AttendanceModel {
         this.isPresent = isPresent;
     }
 
+
+     
     @Override
     public String toString() {
         return "{" + "Attendance_Id" + attendance_id
                 + "student_id" + student_id + ", teacher_id" + teacher_id +
-                ", date" + date + ", presention" + isPresent +
+                ", date" + date + ", presention" + isPresent + 
                 "}";
     }
 

@@ -1,6 +1,5 @@
 package online.example.attendance.Models;
 
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,6 +31,8 @@ public class Attendancepage {
     @Column(nullable = false)
     private boolean isPresent;
 
+    
+
     public Attendancepage() {
 
     }
@@ -42,6 +43,7 @@ public class Attendancepage {
         this.teacher_id = teacher_id;
         this.date = date;
         this.isPresent = isPresent;
+        
     }
 
     public int getattendance_id() {
@@ -83,6 +85,8 @@ public class Attendancepage {
     public void setisPresent(boolean isPresent) {
         this.isPresent = isPresent;
     }
+
+    
 
     @Override
     public String toString() {
