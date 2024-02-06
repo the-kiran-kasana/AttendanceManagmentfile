@@ -6,7 +6,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "users_table")
 public class UserTable {
@@ -25,17 +32,9 @@ public class UserTable {
     @Column(name = "user_password", nullable = false)
     private String user_password;
 
-    public UserTable() {
+   
 
-    }
-
-    public UserTable(int user_id, int school_id, String user_name, String user_password) {
-        this.user_id = user_id;
-        this.school_id = school_id;
-        this.user_name = user_name;
-        this.user_password = user_password;
-    }
-
+    
     public int getschool_id() {
         return school_id;
     }

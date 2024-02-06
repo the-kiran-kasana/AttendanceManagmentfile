@@ -5,8 +5,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.GenerationType;
 
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "teachers_details")
 public class TeacherDetailsTable {
@@ -25,17 +32,6 @@ public class TeacherDetailsTable {
     @Column(name = "class_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int class_id;
-
-    public TeacherDetailsTable() {
-
-    }
-
-    public TeacherDetailsTable(int teacher_id, String teacher_name, String subject, int class_id) {
-        this.teacher_id = teacher_id;
-        this.teacher_name = teacher_name;
-        this.subject = subject;
-        this.class_id = class_id;
-    }
 
     public int getteacher_id() {
         return teacher_id;
