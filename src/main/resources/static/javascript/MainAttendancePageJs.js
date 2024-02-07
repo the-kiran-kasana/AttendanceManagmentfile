@@ -267,32 +267,6 @@ function isRecordUnique(student_id, teacher_id, date) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function showCheckHistory()
 {
 

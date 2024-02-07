@@ -159,7 +159,7 @@ function submitFormForSignup() {
                 // User signed up successfully
                
                 console.log("hello");
-                //document.getElementById("req").classList.remove("hidden"); // Show the notification
+                //document.getElementById("req").classList.remove("hidden");
                 location.replace("http://localhost:8080/Online_Attendance");
               } 
             }
@@ -178,11 +178,9 @@ function submitFormForSignup() {
   }
 }
 
-// // Add a CSS class to initially hide the notification
-// document.getElementById("req").classList.add("hidden");
+
 
 function isValidUsername(username) {
-  // Validate the username (customize this according to your requirements)
   const usernameRegex = /^[a-zA-Z0-9]{3,}$/;
   return usernameRegex.test(username);
 }
